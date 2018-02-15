@@ -13,6 +13,12 @@ Bayesian Psychometric Curve Fitting tool using PyStan and Stan
 
 --------------------------------------------------
 
+NEWS: 
+
+** VERSION 1.3 NOW RELEASED.  SEE RELEASE NOTES BELOW FOR MORE INFORMATION ON CHANGES. **
+
+--------------------------------------------------
+
 **BayesFit** provides a simple and easy to use interface to fit and plot psychometric functions by making use of pystan and Stan, which perform Bayesian inference using the No-U-Turn sampler.  
 
 Important links
@@ -107,12 +113,17 @@ Simply type:
 Release Notes
 ------------------
 
-Release 1.21 (Stable release):
+Release 1.3 (Most stable release):
 
-- Fixed issue with the use of floats in vector of stimulus intensities.
-- Default value for "chains" parameter now set to 1 to avoid parallel computing issues for Windows users.
-- Removed gumbel distribution function until further notice.
-- Corrected numerous issues with plotting functions, especially the density plot
+- **Main function (bayesfit) now performs compilation and sampling at once!  Please see documentation to orient yourself to changes from older versions! ** 
+- **Each plot now has its own function under the '.plot' method.** 
+- Added functionality that allows users to custom define prior distributions 
+- Added functionality that will attempt to generate aggregate dataframe if raw data provided
+- Updated the plot function for CDFs to incorporate threshold and gamma measures
+- General aesthetics of plot for CDF improved
+- Added additional safeguards for using options that are not permitted 
+- Altered code to remove redundancies and improve format 
+
 
 .. |pypi| image:: https://badge.fury.io/py/bayesfit.png
     :target: https://badge.fury.io/py/bayesfit
