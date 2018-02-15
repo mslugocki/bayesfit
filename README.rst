@@ -15,7 +15,7 @@ Bayesian Psychometric Curve Fitting tool using PyStan and Stan
 
 NEWS: 
 
-** VERSION 1.3 NOW RELEASED.  SEE RELEASE NOTES BELOW FOR MORE INFORMATION ON CHANGES. **
+**VERSION 1.3 NOW RELEASED.  SEE RELEASE NOTES BELOW FOR MORE INFORMATION ON CHANGES.**
 
 --------------------------------------------------
 
