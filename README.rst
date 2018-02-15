@@ -115,7 +115,7 @@ Release Notes
 
 Release 1.3 (Most stable release):
 
-- **Main function (bayesfit) now performs compilation and sampling at once!  Please see documentation to orient yourself to changes from older versions! ** 
+- **Main function (bayesfit) now performs compilation and sampling at once!  Please see documentation to orient yourself to changes from older versions!** 
 - **Each plot now has its own function under the '.plot' method.** 
 - Added functionality that allows users to custom define prior distributions 
 - Added functionality that will attempt to generate aggregate dataframe if raw data provided
