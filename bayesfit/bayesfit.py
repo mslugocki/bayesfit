@@ -21,7 +21,7 @@ import scipy as sc
 from copy import deepcopy as _deepcopy
 
 # Functions from other files in module
-import bayesfit_plot as plot
+from . import bayesfit_plot as plot
 
 
 #######################################################################
