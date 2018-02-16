@@ -17,6 +17,8 @@ NEWS:
 
 **VERSION 1.5 NOW RELEASED.  SEE RELEASE NOTES BELOW FOR MORE INFORMATION ON CHANGES.**
 
+Link to v1.5 in PyPI archive (badge update spotty): https://pypi.python.org/pypi/bayesfit/1.5
+
 --------------------------------------------------
 
 **BayesFit** provides a simple and easy to use interface to fit and plot psychometric functions by making use of pystan and Stan, which perform Bayesian inference using the No-U-Turn sampler.  
