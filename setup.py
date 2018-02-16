@@ -8,7 +8,7 @@ Created on Thu Sep 28 08:56:53 2017
 from setuptools import setup
 
 setup(name='bayesfit',
-      version='1.45',
+      version='1.5',
       description='Bayesian Psychometric Curve Fitting Module',
       url='http://github.com/slugocm/BayesFit',
       author='Michael Slugocki',
