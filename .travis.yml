@@ -8,4 +8,4 @@ install:
   - pip install pytest
 # command to run tests
 script:
-  - cd tests && py.test
+  - cd tests && pytest
