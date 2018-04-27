@@ -135,7 +135,8 @@ Release 1.5 (Most stable release):
     :target: https://travis-ci.org/SlugocM/bayesfit/
     :alt: travis-ci build status
     
-.. |coveralls| image:: https://coveralls.io/repos/github/SlugocM/bayesfit/badge.svg
-    :target: https://coveralls.io/github/SlugocM/bayesfit
+.. |coveralls| image:: https://coveralls.io/repos/github/SlugocM/bayesfit/badge.svg?branch=master
+    :target: https://coveralls.io/github/SlugocM/bayesfit?branch=master
+
 
 
