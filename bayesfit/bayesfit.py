@@ -27,7 +27,7 @@ from . import checkParams
 from . import checkOptions 
 from . import psyFunction
 from . import extractMetrics 
-from . import extractThreshold
+# from . import extractThreshold
 from . import gewekePlot
 from . import plot_CDF
 
@@ -163,3 +163,26 @@ def _fitmodel(data, options):
                                 chains=2)
 
         return model_trace
+
+
+#################################################################
+#  EXTRACT THRESHOLD FROM FITTED PARAMETERS
+#################################################################
+def get_threshold(data, metrics, options, threshold_pc):
+# Extract threshold at specified level of propertion correct
+    # using numerical approximation 
+    def _find_nearest(y, x, value):
+        idx = (np.abs(y-value)).argmin()
+        return x[idx]
+    
+    x_est = np.linspace(data[:,0].min(), data[:,0].max(), 1e4)
+    y_pred = psyfunction(x_est, 
+                          metrics['Fit'][0], 
+                          metrics['Fit'][1], 
+                          metrics['Fit'][2], 
+                          metrics['Fit'][3], 
+                          options['sigmoid_type'])
+    
+    threshold = _find_nearest(y_pred, x_est, threshold_pc)
+        
+    return threshold

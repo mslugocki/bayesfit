@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-from checkLogspace import check_logspace 
+from bayesfit import check_logspace 
 
 
 #################################################################
