@@ -17,7 +17,7 @@
 #################################################################
 import numpy as np
 import matplotlib.pyplot as plt
-from psyFunction import psyfunction as _psyfunction
+from . import psyfunction as _psyfunction
 
 
 #################################################################
