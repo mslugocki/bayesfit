@@ -16,7 +16,7 @@
 #  IMPORT MODULES
 #################################################################
 import numpy as np
-from psyFunction import psyfunction as _psyfunction
+from bayesfit import psyfunction as _psyfunction
 
 
 #################################################################
