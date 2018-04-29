@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-from checkData import check_data 
+from bayesfit import _check_data as check_data
 
 
 #################################################################
