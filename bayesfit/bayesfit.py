@@ -21,16 +21,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pymc3 as pm
 
-from checkData import check_data as _check_data
-from checkLogspace import check_logspace as _check_logspace
-from checkParams import check_params as _check_params
-from checkParams import check_constraints as _check_constraints
-from checkOptions import check_options as _check_options
-from psyFunction import psyfunction as _psyfunction
-from extractMetrics import extract_metrics as _extract_metrics
-from extractThreshold import extract_threshold as get_threshold
-from gewekePlot import geweke_plot as geweke_plot
-from plot_CDF import plot_cdf as plot_cdf
+from . import checkData
+from . import checkLogspace 
+from . import checkParams 
+from . import checkOptions 
+from . import psyFunction
+from . import extractMetrics 
+from . import extractThreshold
+from . import gewekePlot
+from . import plot_CDF
 
 # from checkData import check_data as _check_data
 # from checkLogspace import check_logspace as _check_logspace
@@ -62,16 +61,16 @@ def fitmodel(data,
              ):
 
     # Check that user provided data meets structure expected
-    _check_data(data, batch)
+    check_data(data, batch)
 
     # Check whether x-values need to be log-spaced
-    data, logspace = _check_logspace(data, logspace, sigmoid_type)
+    data, logspace = check_logspace(data, logspace, sigmoid_type)
 
     # Check that parameter estimates/constraints are reasonable
-    param_ests = _check_params(data, param_ests, nafc, batch)
+    param_ests = check_params(data, param_ests, nafc, batch)
 
     # Check parameter constraints provided
-    param_constraints = _check_constraints(param_constraints)
+    param_constraints = check_constraints(param_constraints)
 
     # Save options used to fit functions in dictionary for reference
     options = dict()
@@ -87,7 +86,7 @@ def fitmodel(data,
     options['n_workers'] = n_workers
 
     # Check that all options provided by user or defaults assigned are acceptable
-    _check_options(options)
+    check_options(options)
 
     # Fit models to data
     if batch is True:
@@ -95,11 +94,11 @@ def fitmodel(data,
         trace = dict()
         for keys in data:
             trace[keys] = _fitmodel(data[keys], options)
-            metrics[keys] = _extract_metrics(trace[keys], options)
+            metrics[keys] = extract_metrics(trace[keys], options)
             metrics[keys]['threshold'] = get_threshold(data[keys], metrics[keys], options, options['threshold'])
     elif batch is False:
         trace = _fitmodel(data, options)
-        metrics = _extract_metrics(trace, options)
+        metrics = extract_metrics(trace, options)
         metrics['threshold'] = get_threshold(data, metrics, options, options['threshold'])
     # Return tuple of objects
     return trace, metrics, options
@@ -144,7 +143,7 @@ def _fitmodel(data, options):
             lambda_ = options['param_ests'][3]
 
         # Create the probability from the logistic function
-        p = pm.Deterministic('p',  _psyfunction(x,
+        p = pm.Deterministic('p',  psyfunction(x,
                                                 alpha,
                                                 beta,
                                                 gamma,
