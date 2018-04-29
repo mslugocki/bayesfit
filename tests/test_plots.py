@@ -33,6 +33,9 @@ def _check_geweke_plot():
     trace, metrics, options = bf.fitmodel(data)
     # Generate geweke plot
     bf.geweke_plot(trace = trace['alpha'], intervals = 10, length = 300)
+    # Update success flag
+    success = 1
+    return success 
 
 def _check_plot_cdf():    
     # Generate dataset 
@@ -44,26 +47,20 @@ def _check_plot_cdf():
     trace, metrics, options = bf.fitmodel(data)
     # Generate cdf plot
     bf.plot_cdf(data, metrics, options)
-    
+    # Update success flag
+    success = 1
+    return success 
 
 #################################################################
 #  UNIT TESTS
 #################################################################
 
 def test_check_geweke_plot():
-    raised = False
-    try:
-        _check_geweke_plot()
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+    success = _check_geweke_plot()
+    # Assert if exception   
+    assert success == 1
 
 def test_check_plot_cdf():
-    raised = False
-    try:
-        _check_plot_cdf()
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+    success = _check_plot_cdf()
+    # Assert if exception   
+    assert success == 1

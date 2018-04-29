@@ -7,7 +7,7 @@
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   April 28, 2017
-*  Last updated: April 28, 2018
+*  Last updated: April 29, 2018
 *
 *******************************************************
 """
@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-import bayesfit as bf
+from checkParams import check_params as _check_params
 
 
 #################################################################
@@ -39,8 +39,10 @@ def _check_params_none(branch):
     elif branch == 1:
         batch = True
     # Call function with arguments above
-    bf.check_params(data, param_ests, nafc, batch)
-
+    _check_params(data, param_ests, nafc, batch)
+    # Update success flag
+    success = 1
+    return success 
 
 def _check_params_not_none(branch):    
     # Generate dataset 
@@ -75,33 +77,26 @@ def _check_params_not_none(branch):
         # Set param_ests to go through different number of args (trigger error)
         param_ests = [0.05, 2, 0.5, 0, 0.09]
     # Call function with arguments above
-    bf.check_params(data, param_ests, nafc, batch)
-
+    _check_params(data, param_ests, nafc, batch)
+    # Update success flag
+    success = 1
+    return success 
 
 #################################################################
 #  UNIT TESTS
 #################################################################
 
 def test_check_params_none_branch0():
-    raised = False
-    try:
-        _check_params_none(0)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+    success = _check_params_none(0)
+    # Assert if exception   
+    assert success == 1
 
 def test_check_params_none_branch1():
-    raised = False
-    try:
-        _check_params_none(1)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+    success = _check_params_none(1)
+    # Assert if exception   
+    assert success == 1
 
-
-def _check_params_not_none_branch0():
+def test_check_params_not_none_branch0():
     raised = False
     try:
         _check_params_not_none(0)
@@ -110,7 +105,7 @@ def _check_params_not_none_branch0():
     # Assert if exception flag is not raised     
     assert raised is True
 
-def _check_params_not_none_branch1():
+def test_check_params_not_none_branch1():
     raised = False
     try:
         _check_params_not_none(1)
@@ -119,7 +114,7 @@ def _check_params_not_none_branch1():
     # Assert if exception flag is not raised     
     assert raised is True
     
-def _check_params_not_none_branch2():
+def test_check_params_not_none_branch2():
     raised = False
     try:
         _check_params_not_none(2)
@@ -128,34 +123,22 @@ def _check_params_not_none_branch2():
     # Assert if exception flag is not raised     
     assert raised is True
     
-def _check_params_not_none_branch3():
-    raised = False
-    try:
-        _check_params_not_none(3)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+def test_check_params_not_none_branch3():
+    success = _check_params_not_none(3)
+    # Assert if exception   
+    assert success == 1
     
-def _check_params_not_none_branch4():
-    raised = False
-    try:
-        _check_params_not_none(4)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+def test_check_params_not_none_branch4():
+    success = _check_params_not_none(4)
+    # Assert if exception   
+    assert success == 1
     
-def _check_params_not_none_branch5():
-    raised = False
-    try:
-        _check_params_not_none(5)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+def test_check_params_not_none_branch5():
+    success = _check_params_not_none(5)
+    # Assert if exception   
+    assert success == 1
     
-def _check_params_not_none_branch6():
+def test_check_params_not_none_branch6():
     raised = False
     try:
         _check_params_not_none(6)

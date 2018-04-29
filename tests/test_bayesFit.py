@@ -7,7 +7,7 @@
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   April 28, 2017
-*  Last updated: April 28, 2018
+*  Last updated: April 29, 2018
 *
 *******************************************************
 """
@@ -44,9 +44,9 @@ def _check_bayesfit_psyfunctions(branch):
         sigmoid_type = 'hyperbolic'
     # Use BayesFit to fit function
     trace, metrics, options = bf.fitmodel(data, sigmoid_type = sigmoid_type)
-    # Set success flag to True
+    # Update success flag
     success = 1
-    return success
+    return success 
 
 def _check_bayesfit_param_constraints(branch):    
     # Generate dataset 
@@ -63,7 +63,9 @@ def _check_bayesfit_param_constraints(branch):
         param_constraints = [True, True, True, True]
     # Use BayesFit to fit function
     trace, metrics, options = bf.fitmodel(data, param_constraints = param_constraints)
-    
+    # Update success flag
+    success = 1
+    return success 
 
 #################################################################
 #  UNIT TESTS
@@ -71,78 +73,47 @@ def _check_bayesfit_param_constraints(branch):
 
 def test_check_bayesfit_psyfunctions_branch0():
     success = _check_bayesfit_psyfunctions(0)
-    # Assert if exception flag is raised     
+    # Assert if exception  
     assert success == 1
 
-# def test_check_bayesfit_psyfunctions_branch1():
-#     raised = False
-#     try:
-#         _check_bayesfit_psyfunctions(1)
-#     except:
-#         raised = True
-#     # Assert if exception flag is raised     
-#     assert raised is False
-    
-# def test_check_bayesfit_psyfunctions_branch2():
-#     raised = False
-#     try:
-#         _check_bayesfit_psyfunctions(2)
-#     except:
-#         raised = True
-#     # Assert if exception flag is raised     
-#     assert raised is False
-    
-# def test_check_bayesfit_psyfunctions_branch3():
-#     raised = False
-#     try:
-#         _check_bayesfit_psyfunctions(3)
-#     except:
-#         raised = True
-#     # Assert if exception flag is raised     
-#     assert raised is False
-    
-# def test_check_bayesfit_psyfunctions_branch4():
-#     raised = False
-#     try:
-#         _check_bayesfit_psyfunctions(4)
-#     except:
-#         raised = True
-#     # Assert if exception flag is raised     
-#     assert raised is False
 
-# def test_check_bayesfit_psyfunctions_branch5():
-#     raised = False
-#     try:
-#         _check_bayesfit_psyfunctions(5)
-#     except:
-#         raised = True
-#     # Assert if exception flag is raised     
-#     assert raised is False    
+def test_check_bayesfit_psyfunctions_branch1():
+    success = _check_bayesfit_psyfunctions(1)
+    # Assert if exception  
+    assert success == 1
+    
+def test_check_bayesfit_psyfunctions_branch2():
+    success = _check_bayesfit_psyfunctions(2)
+    # Assert if exception  
+    assert success == 1
+    
+def test_check_bayesfit_psyfunctions_branch3():
+    success = _check_bayesfit_psyfunctions(3)
+    # Assert if exception  
+    assert success == 1
+    
+def test_check_bayesfit_psyfunctions_branch4():
+    success = _check_bayesfit_psyfunctions(4)
+    # Assert if exception  
+    assert success == 1
+
+def test_check_bayesfit_psyfunctions_branch5():
+    success = _check_bayesfit_psyfunctions(5)
+    # Assert if exception  
+    assert success == 1  
     
     
-# def test_check_bayesfit_param_constraints_branch0():
-#     raised = False
-#     try:
-#         _check_bayesfit_param_constraints(0)
-#     except:
-#         raised = True
-#     # Assert if exception flag is raised     
-#     assert raised is False    
+def test_check_bayesfit_param_constraints_branch0():
+    success = _check_bayesfit_param_constraints(0)
+    # Assert if exception  
+    assert success == 1    
     
-# def test_check_bayesfit_param_constraints_branch1():
-#     raised = False
-#     try:
-#         _check_bayesfit_param_constraints(1)
-#     except:
-#         raised = True
-#     # Assert if exception flag is raised     
-#     assert raised is False    
+def test_check_bayesfit_param_constraints_branch1():
+    success = _check_bayesfit_param_constraints(1)
+    # Assert if exception  
+    assert success == 1      
     
-# def test_check_bayesfit_param_constraints_branch2():
-#     raised = False
-#     try:
-#         _check_bayesfit_param_constraints(2)
-#     except:
-#         raised = True
-#     # Assert if exception flag is raised     
-#     assert raised is False    
+def test_check_bayesfit_param_constraints_branch2():
+    success = _check_bayesfit_param_constraints(2)
+    # Assert if exception  
+    assert success == 1     

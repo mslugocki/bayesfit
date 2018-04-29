@@ -7,7 +7,7 @@
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   April 28, 2017
-*  Last updated: April 28, 2018
+*  Last updated: April 29, 2018
 *
 *******************************************************
 """
@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-import bayesfit as bf
+from checkParams import check_constraints as _check_constraints
 
 
 #################################################################
@@ -27,8 +27,10 @@ def _check_constraints_none():
     # Test cases for param_constraints is None
     param_constraints = None
     # Call function with arguments above
-    bf.check_constraints(param_constraints)
-    
+    _check_constraints(param_constraints)
+    # Update success flag
+    success = 1
+    return success 
     
 def _check_constraints_not_none(branch):    
     if branch == 0:
@@ -53,23 +55,20 @@ def _check_constraints_not_none(branch):
         # Test cases for param_constraints
         param_constraints = [True, True, False, True, False]
     # Call function with arguments above
-    bf.check_constraints(param_constraints)   
-
+    _check_constraints(param_constraints)   
+    # Update success flag
+    success = 1
+    return success 
 
 #################################################################
 #  UNIT TESTS
 #################################################################
 
 def test_check_params_none():
-    raised = False
-    try:
-        _check_params_none(0)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+    success = _check_constraints_none()
+    # Assert if exception   
+    assert success == 1
     
-
 def test_check_params_not_none_branch0():
     raised = False
     try:
@@ -98,31 +97,19 @@ def test_check_params_not_none_branch2():
     assert raised is True
     
 def test_check_params_not_none_branch3():
-    raised = False
-    try:
-        _check_constraints_not_none(3)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+    success = _check_constraints_not_none(3)
+    # Assert if exception   
+    assert success == 1
     
 def test_check_params_not_none_branch4():
-    raised = False
-    try:
-        _check_constraints_not_none(4)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+    success = _check_constraints_not_none(4)
+    # Assert if exception   
+    assert success == 1
     
 def test_check_params_not_none_branch5():
-    raised = False
-    try:
-        _check_constraints_not_none(5)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+    success = _check_constraints_not_none(5)
+    # Assert if exception   
+    assert success == 1
     
 def test_check_params_not_none_branch6():
     raised = False

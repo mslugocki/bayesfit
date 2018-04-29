@@ -7,7 +7,7 @@
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   April 28, 2017
-*  Last updated: April 28, 2018
+*  Last updated: April 29, 2018
 *
 *******************************************************
 """
@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-import bayesfit as bf
+from checkData import check_data
 
 
 #################################################################
@@ -41,7 +41,10 @@ def _batch_false(error):
         y[0] = -0.1
         data = np.array([x, y, N]).T
     # Call function with arguments above
-    bf.check_data(data, batch)
+    check_data(data, batch)
+    # Update success flag
+    success = 1
+    return success 
 
 
 def _batch_true(error):    
@@ -65,7 +68,10 @@ def _batch_true(error):
         data = dict()
         data['obs1'] = np.array([x, y, N]).T
     # Call function with arguments above
-    bf.check_data(data, batch)
+    check_data(data, batch)
+    # Update success flag
+    success = 1
+    return success 
 
 
 #################################################################
@@ -73,13 +79,9 @@ def _batch_true(error):
 #################################################################
 
 def test_batch_false_noerror():
-    raised = False
-    try:
-        _batch_false(0)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+    success = _batch_false(0)
+    # Assert if exception  
+    assert success == 1
 
 def test_batch_false_error1():
     raised = False
@@ -110,13 +112,9 @@ def test_batch_false_error3():
 
 
 def test_batch_true_noerror():
-    raised = False
-    try:
-        _batch_true(0)
-    except:
-        raised = True
-    # Assert if exception flag is raised     
-    assert raised is False
+    success = _batch_true(0)
+    # Assert if exception  
+    assert success == 1
 
 def test_batch_true_error1():
     raised = False
