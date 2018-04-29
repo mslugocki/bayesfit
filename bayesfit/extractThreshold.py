@@ -22,7 +22,7 @@ from psyFunction import psyfunction as _psyfunction
 #################################################################
 #  EXTRACT THRESHOLD FROM FITTED PARAMETERS
 #################################################################
-def extract_threshold(data, metrics, options, threshold_pc):
+def get_threshold(data, metrics, options, threshold_pc):
 # Extract threshold at specified level of propertion correct
     # using numerical approximation 
     def _find_nearest(y, x, value):

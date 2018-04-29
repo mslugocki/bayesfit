@@ -32,6 +32,17 @@ from extractThreshold import extract_threshold as get_threshold
 from gewekePlot import geweke_plot as geweke_plot
 from plot_CDF import plot_cdf as plot_cdf
 
+# from checkData import check_data as _check_data
+# from checkLogspace import check_logspace as _check_logspace
+# from checkParams import check_params as _check_params
+# from checkParams import check_constraints as _check_constraints
+# from checkOptions import check_options as _check_options
+# from psyFunction import psyfunction as _psyfunction
+# from extractMetrics import extract_metrics as _extract_metrics
+# from extractThreshold import extract_threshold as get_threshold
+# from gewekePlot import geweke_plot as geweke_plot
+# from plot_CDF import plot_cdf as plot_cdf
+
 
 #################################################################
 #  BAYESFIT CORE FUNCTION THAT ACCEPTS ARGUMENTS FROM USER
