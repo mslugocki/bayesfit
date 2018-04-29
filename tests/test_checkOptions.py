@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-from bayesfit import check_options
+import bayesfit as bf
 
 
 #################################################################
