@@ -18,6 +18,11 @@
 #################################################################
 
 import numpy as np
+import os 
+import matplotlib
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using non-interactive Agg backend')
+    matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import pymc3 as pm
 

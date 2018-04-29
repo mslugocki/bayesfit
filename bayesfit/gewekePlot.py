@@ -18,6 +18,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 #################################################################
 #  FUNCTION IMPLEMENTING THE GEWEKE DIAGNOSTIC
 #################################################################
