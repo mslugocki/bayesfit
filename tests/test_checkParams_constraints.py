@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-from bayesfit import check_constraints
+import bayesfit as bf
 
 
 #################################################################
@@ -27,7 +27,7 @@ def _check_constraints_none():
     # Test cases for param_constraints is None
     param_constraints = None
     # Call function with arguments above
-    check_constraints(param_constraints)
+    bf.check_constraints(param_constraints)
     
     
 def _check_constraints_not_none(branch):    
@@ -53,7 +53,7 @@ def _check_constraints_not_none(branch):
         # Test cases for param_constraints
         param_constraints = [True, True, False, True, False]
     # Call function with arguments above
-    check_constraints(param_constraints)   
+    bf.check_constraints(param_constraints)   
 
 
 #################################################################

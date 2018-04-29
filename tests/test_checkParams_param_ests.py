@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-from . import checkParams
+import bayesfit as bf
 
 
 #################################################################
@@ -39,7 +39,7 @@ def _check_params_none(branch):
     elif branch == 1:
         batch = True
     # Call function with arguments above
-    check_params(data, param_ests, nafc, batch)
+    bf.check_params(data, param_ests, nafc, batch)
 
 
 def _check_params_not_none(branch):    
@@ -75,7 +75,7 @@ def _check_params_not_none(branch):
         # Set param_ests to go through different number of args (trigger error)
         param_ests = [0.05, 2, 0.5, 0, 0.09]
     # Call function with arguments above
-    check_params(data, param_ests, nafc, batch)
+    bf.check_params(data, param_ests, nafc, batch)
 
 
 #################################################################

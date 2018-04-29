@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-from . import checkLogspace
+import bayesfit as bf
 
 
 #################################################################
@@ -34,7 +34,7 @@ def _logspace_arg():
     # Define sigmoid type 
     sigmoid_type = 'weibull'
     # Call function with arguments above
-    check_logspace(data, logspace, sigmoid_type)
+    bf.check_logspace(data, logspace, sigmoid_type)
 
 
 def _logspace_none(branch):    
@@ -59,7 +59,7 @@ def _logspace_none(branch):
         # Define sigmoid type 
         sigmoid_type = 'logistic'
     # Call function with arguments above
-    check_logspace(data, logspace, sigmoid_type)
+    bf.check_logspace(data, logspace, sigmoid_type)
 
 
 def _logspace_true(branch):    
@@ -81,7 +81,7 @@ def _logspace_true(branch):
         y[0] = -0.1
         data = np.array([x, y, N]).T
     # Call function with arguments above
-    check_logspace(data, logspace, sigmoid_type)
+    bf.check_logspace(data, logspace, sigmoid_type)
     
 
 def _logspace_false():    
@@ -95,7 +95,7 @@ def _logspace_false():
     # Define sigmoid type 
     sigmoid_type = 'weibull'
     # Call function with arguments above
-    check_logspace(data, logspace, sigmoid_type)
+    bf.check_logspace(data, logspace, sigmoid_type)
 
 
 #################################################################

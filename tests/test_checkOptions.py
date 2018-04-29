@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-from . import checkOptions
+import bayesfit as bf
 
 
 #################################################################
@@ -64,7 +64,7 @@ def _check_options(branch):
     elif branch == 11:
         options['n_workers'] = 25
     # Call function with arguments above
-    check_options(options)
+    bf.check_options(options)
 
 
 #################################################################
