@@ -1,19 +1,50 @@
 """
 *******************************************************
 *
-*  BAYESFIT - UNIT TEST FOR TRAVIS CI
+*  test_checkData - UNIT TEST FOR TRAVIS CI
 *  
+*  Version:      Version 2.0
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
-*  Created on:   October, 2017
-*  Last updated: February 18, 2018
+*  Created on:   September, 2017
+*  Last updated: April 28, 2018
 *
 *******************************************************
 """
 
-import pandas as pd
+#################################################################
+#  IMPORT MODULES 
+#################################################################
+import numpy as np
 import bayesfit as bf
 
+
+#################################################################
+#  DEFINE FUNCTIONS USED FOR UNIT TESTING
+#################################################################
+
+def _batch_false(error):    
+    # Test cases for batch equal False 
+    batch = False    
+    # Generate dataset 
+    x = [0.1, 0.21, 0.33, 0.44, 0.55, 0.66, 0.78, 0.9]
+    y = [0.48, 0.47, 0.53, 0.55, 0.73, 0.83, 0.97, 0.96] 
+    N = [100, 100, 100, 100, 100, 100, 100, 100]
+    # Run through possible error types
+    if error == 1:
+        data = dict()
+    elif error == 2:
+        data = np.array([x, y]).T
+    elif error == 3:
+        y[0] = -0.1
+        data = np.array([x, y, N]).T
+    elif error == 4:
+        data = np.array([x, y, N]).T
+    # Call function with arguments above
+    check_data(data, batch)
+    # If working, should not make it to flag
+    flag = 1
+    return flag
 
 
 
@@ -115,8 +146,10 @@ def _weibull():
 
 
 
-def test_normal():
-    assert _normal() == 1
+def test_batch_false():
+    flag = 0
+    flag = _batch_false()
+    assert flag == 0
 
 def test_logistic():
     assert _logistic() == 1

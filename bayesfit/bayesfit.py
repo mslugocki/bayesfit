@@ -1,357 +1,154 @@
 """
 *******************************************************
 *
-*  BAYESFIT - CORE FILE
+*  BayesFit - CORE FILE
 *  
+*  Version:      Version 2.0
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
-*  Created on:   September 2017
-*  Last updated: February 18, 2018
+*  Created on:   September, 2017
+*  Last updated: April 18, 2018
 *
 *******************************************************
 """
 
-#######################################################################
+
+#################################################################
 #  IMPORT MODULES 
-#######################################################################
+#################################################################
+
 import numpy as np
-import pystan as ps 
-import pandas as pd
-import scipy as sc
-from copy import deepcopy as _deepcopy
+import matplotlib.pyplot as plt
+import pymc3 as pm
 
-# Functions from other files in module
-from . import bayesfit_plot as plot
+from checkData import check_data as _check_data
+from checkLogspace import check_logspace as _check_logspace
+from checkParams import check_params as _check_params
+from checkParams import check_constraints as _check_constraints
+from checkOptions import check_options as _check_options
+from psyFunction import psyfunction as _psyfunction
+from extractMetrics import extract_metrics as _extract_metrics
+from extractThreshold import extract_threshold as get_threshold
+from gewekePlot import geweke_plot as geweke_plot
+from plot_CDF import plot_cdf as plot_cdf
 
+#################################################################
+#  BAYESFIT CORE FUNCTION THAT ACCEPTS ARGUMENTS FROM USER
+#################################################################
 
-#######################################################################
-#  WRAPPER FUNCTION FOR ACCEPTING INPUTS
-#######################################################################
-def bayesfit(data, options):
+def fitmodel(data,
+             batch=False,
+             logspace=None,
+             nafc=2,
+             sigmoid_type='logistic',
+             param_ests=None,
+             param_constraints=None,
+             threshold=0.75,
+             n_samples=5000,
+             chains=2,
+             n_workers=1
+             ):
 
-    # Check data structure provided by user
-    # Format requested is a N x 3 data frame such that [x, y, N]
-    if data.shape[1] != 3:
-        raise Exception('Data provided does not contain the number of columns required! (i.e., [x, y, N])') 
-    assert data.y.min() >= 0, 'The y-values provided contain a proportion less than zero! ' 
-    assert data.y.max() <= 1, 'The y-values provided contain a proportion greater than one! ' 
+    # Check that user provided data meets structure expected
+    _check_data(data, batch)
 
-    # Check user input for options
-    if not('options' in locals()): 
-        options = dict()
-        
-    else:
-        options = _deepcopy(options)
-        
-    # Define sigmoid function 
-    if not('sigmoidType' in options.keys()):
-        options['sigmoidType'] = 'cnorm'
-        
-    # Define number of alternatives
-    if not('nAFC' in options.keys()):
-        options['nAFC'] = 2
-         
-    # Define gamma
-    if options['nAFC'] == 0:
-        options['gamma'] = 0
-    else:
-        options['gamma'] = 1/options['nAFC']
-        
-    # Specify wehtehr lapse rate should be estimated
-    if not('lapse' in options.keys()):
-        options['lapse'] = True
-        
-    # Determines whether the fit 
-    if not('fit' in options.keys()):
-        options['fit'] = 'auto'
-            
-    # Determines whether aggregate data provided
-    if not('agg_data' in options.keys()):
-        options['agg_data'] = False
-        data = gen_aggregateData(data)
-                
-    # How the parameter estimated are obtained from posterior
-    if not('param_ests' in options.keys()):
-        options['param_ests'] = 'mean'
-        
-    # Value that threshold is defined at
-    if not('thresholdPC' in options.keys()):
-        options['thresholdPC'] = .75    
-        
-    # Check arguments for sampling the posterior
-    if not('iter' in options.keys()):
-        options['iter'] = 10000
-        
-    if not('chains' in options.keys()):
-        options['chains'] = 1  
-    
-    # Check sigmoid type provided to convert to logspace where necessary 
-    if options['sigmoidType'] in ['weibull']:
-        options['logspace'] = 1
-        assert data.x.min() > 0, 'The sigmoid you specified is not defined for negative data points!'
-    else:
-        options['logspace'] = 0
+    # Check whether x-values need to be log-spaced
+    data, logspace = _check_logspace(data, logspace, sigmoid_type)
 
-    # Check options provided are valid options
-    if options['fit'] not in ('auto', 'manual_full', 'manual_part'):
-        assert False, 'Options provided are not those made available by module. Revise options provided.'
-    if options['lapse'] not in (True, False):
-        assert False, 'Options provided are not those made available by module. Revise options provided.'        
-    if options['sigmoidType'] not in ('cnorm', 'logistic', 'cauchy', 'weibull'):
-        assert False, 'Options provided are not those made available by module. Revise options provided.'                
-    if isinstance(options['nAFC'], (int, float, complex)) == False:
-        assert False, 'Please provide a numerical argument for options["nAFC"].'
-    if isinstance(options['iter'], (int, float, complex)) == False:
-        assert False, 'Please provide a numerical argument for options["iter"].'    
-    if isinstance(options['chains'], (int, float, complex)) == False:
-        assert False, 'Please provide a numerical argument for options["chains"].'
-    
-    # File that performs compilation of model in STAN  
-    print('---------------------------------------------------') 
-    print('--- COMPILE MODEL ...                  ')
-    model = modelCompile(data,options)
-    print('--- COMPILE MODEL ...      COMPLETE ---------------')
+    # Check that parameter estimates/constraints are reasonable
+    param_ests = _check_params(data, param_ests, nafc, batch)
 
-    # File that samples from posterior    
-    print('--- SAMPLE USING MODEL ...             ')
-    sample = modelSample(data, options, model)    
-    print('--- SAMPLE USING MODEL ... COMPLETE ---------------')
-    
-    # Print message to update user that process is complete
-    print('---                           ')
-    print('--- ALL PROCESSES COMPLETE ---')
-    
+    # Check parameter constraints provided
+    param_constraints = _check_constraints(param_constraints)
+
+    # Save options used to fit functions in dictionary for reference
+    options = dict()
+    options['batch'] = batch
+    options['logspace'] = logspace
+    options['nafc'] = nafc
+    options['sigmoid_type'] = sigmoid_type
+    options['param_ests'] = param_ests
+    options['param_constraints'] = param_constraints
+    options['threshold'] = threshold
+    options['n_samples'] = n_samples
+    options['chains'] = chains
+    options['n_workers'] = n_workers
+
+    # Check that all options provided by user or defaults assigned are acceptable
+    _check_options(options)
+
+    # Fit models to data
+    if batch is True:
+        metrics = dict()
+        trace = dict()
+        for keys in data:
+            trace[keys] = _fitmodel(data[keys], options)
+            metrics[keys] = _extract_metrics(trace[keys], options)
+            metrics[keys]['threshold'] = get_threshold(data[keys], metrics[keys], options, options['threshold'])
+    elif batch is False:
+        trace = _fitmodel(data, options)
+        metrics = _extract_metrics(trace, options)
+        metrics['threshold'] = get_threshold(data, metrics, options, options['threshold'])
     # Return tuple of objects
-    return (model, sample, options)
+    return trace, metrics, options
 
 
-#######################################################################
-#  FUNCTION FOR COMPILING MODEL INTO C++ CODE
-#######################################################################
-def modelCompile(data, options, model_definition=dict()):
-    
-    # Check argument for model definition 
-    if not('model_definition' in locals()):
-        if options['fit'] == 'auto':
-            model_definition = dict()
-        elif options['fit'] == 'manual_full':
-            assert False, 'Manual fit option chosen!\nNeed to provide *COMPLETE* model definition for STAN!'
-    
-    #######################################################################
-    #  MODEL_DEFINITION == AUTO
-    #######################################################################
-    if options['fit'] in ('auto', 'manual_part'):
-        
-        # Get initial estimate of alpha via linear regression
-        def scale_est(data,options):
-            y = [data.y[0], data.y[data.y.shape[0]-1]]
-            x = [data.x[0], data.x[data.x.shape[0]-1]] 
-            init_scale = np.polyfit(x, y, 1)
-            scale_estimate = [(0.70 - init_scale[1]) / init_scale[0]]
-            return scale_estimate[0]
-        
-        # Guess value to use for scale parameter
-        scale_guess = scale_est(data, options) 
-        
-        # Define distributions and bounds to use for each parameter
-        if options['fit'] == 'auto':
-            if options['sigmoidType'] == 'weibull':
-                parinis = {'alpha':['normal', scale_guess, 3], 'beta':['uniform', 0, 9]}
-            else:
-                parinis = {'mu':['normal', scale_guess, 3], 'sigma':['uniform', 0, 9]}
-        elif options['fit'] == 'manual_part':
-            parinis = options['parinis']
-            if len(parinis) < 2:
-                assert True, '''You have provided less than two lists in dictionary 
-                                to use for distributions when compiling model.
-                                Please revise and provide at least two arguments.'''
-        
-        # Define data structure for stable portions of code 
-        model_definition['data'] = '''
-            data {
-            int<lower=1> N;
-            real x[N];
-            int<lower=0,upper=1> y[N];
-            }'''            
-        
-        # Define sigmoid function to use
-        if options['sigmoidType'] == 'weibull':
-            model_definition['parameters_pt1'] = '''
-                parameters {
-                real<lower=0> beta;
-                real<lower=0> alpha; '''
-            model_definition['likelihood_scale'] = ('''model {beta ~ %s(%f,%f);''' 
-                            %(parinis['beta'][0], 
-                            parinis['beta'][1], 
-                            parinis['beta'][2]))
-            model_definition['likelihood_shape'] = ('''alpha ~ %s(%f,%f);''' 
-                            %(parinis['alpha'][0],
-                              parinis['alpha'][1], 
-                              parinis['alpha'][2]))            
-        else:
-            model_definition['parameters_pt1'] = '''
-                parameters {
-                real<lower=0> mu;
-                real<lower=0> sigma; '''
-            model_definition['likelihood_scale'] = ('''model {mu ~ %s(%f,%f);''' 
-                            %(parinis['mu'][0], 
-                            parinis['mu'][1], 
-                            parinis['mu'][2]))
-            model_definition['likelihood_shape'] = ('''sigma ~ %s(%f,%f);''' 
-                            %(parinis['sigma'][0],
-                              parinis['sigma'][1], 
-                              parinis['sigma'][2]))           
-                
-        # Define sigmoid likelihood functions
-        if options['sigmoidType'] == 'cnorm':    
-            model_definition['likelihood_model_pt2'] = ''' *normal_cdf(x[i],mu, sigma));}} '''  
-        elif options['sigmoidType'] == 'logistic':    
-            model_definition['likelihood_model_pt2'] = ''' *logistic_cdf(x[i],mu, sigma));}} '''  
-        elif options['sigmoidType'] == 'cauchy':    
-            model_definition['likelihood_model_pt2'] = ''' *cauchy_cdf(x[i],mu, sigma));}} '''
-        elif options['sigmoidType'] == 'weibull':
-            model_definition['likelihood_model_pt2'] = ''' *weibull_cdf(x[i],beta, alpha));}} '''
+#################################################################
+#  FITTING FUNCTION THAT USES PYMC3 TO DRAW SAMPLES
+#  FROM THE POSTERIOR
+#################################################################
 
-        # Define lapse specific structures 
-        if options['lapse'] == True:
-            model_definition['parameters_pt2'] = '''
-                real<lower=0> lambda;
-                }'''
-            model_definition['likelihood_lambda'] = '''   
-                lambda ~ beta(2,20); '''   
-            model_definition['likelihood_model_pt1'] = ('''  for (i in 1:N){y[i] ~ bernoulli(%f + (1-lambda-%f) ''' 
-                            %(options['gamma'], options['gamma']))
+def _fitmodel(data, options):
 
-        else:     
-            model_definition['parameters_pt2'] = '''}'''
-            model_definition['likelihood_lambda'] = '''  '''   
-            model_definition['likelihood_model_pt1'] = ('''  for (i in 1:N){y[i] ~ bernoulli(%f + (1-%f) ''' 
-                            %(options['gamma'], options['gamma']))
-
-        # Combine full model together
-        model_definition['full_model'] = (model_definition['data'] + 
-                model_definition['parameters_pt1'] + 
-                model_definition['parameters_pt2'] +
-                model_definition['likelihood_scale'] + 
-                model_definition['likelihood_shape'] + 
-                model_definition['likelihood_lambda'] + 
-                model_definition['likelihood_model_pt1'] + 
-                model_definition['likelihood_model_pt2'])
-
-        # Compile model in STAN
-        compiled_model = ps.StanModel(model_code = model_definition['full_model']) 
-    
-    #######################################################################
-    #  MODEL_DEFINITION == MANUAL (FULL)
-    #######################################################################
-    elif options['fit'] in ('manual_full'):
-        compiled_model = ps.StanModel(model_code = model_definition) 
-    
-    return compiled_model
-    
-
-#######################################################################
-#  FUNCTION THAT GENERATES POSTERIOR FROM MODEL USING STAN
-#######################################################################
-def modelSample(data, options, model):
-    
-    # Convert from average to numerical 1 and 0 sequence is provided with MOCS
-    df = pd.DataFrame([],columns=['x','y']) 
-    for i in range(len(data.x)):
-        approx_numsequence = np.round(data.y[i]*data.N[i])   
-        response_y = np.zeros(data.N[i])
+    # Convert data to long sequence
+    x = np.array([])
+    y = np.array([])
+    for i in range(len(data[:, 0])):
+        approx_numsequence = np.round(data[i, 1]*data[i, 2])
+        response_y = np.zeros(data[i, 2])
         response_y[:int(approx_numsequence)] = 1
-        response_x = np.repeat(data.x[i],data.N[i])
-        tmp_df = pd.DataFrame(np.column_stack((response_x,response_y)), columns=['x','y'])
-        df = df.append(tmp_df)
+        response_x = np.repeat(data[i, 0], data[i, 2])
+        x = np.append(x, response_x)
+        y = np.append(y, response_y)
+    
+    # Fit model
+    with pm.Model() as fitted_model:
 
-    # Convert data frame above to list 
-    x = [float(i) for i in pd.Series.tolist(df.x)]
-    y = [int(i) for i in pd.Series.tolist(df.y)]
-    
-    # Create list to be used as input into the main the sampler
-    data_model= {'N': len(df.x),'x': x,'y': y}
+        # Create the priors for alpha and beta parameters
+        alpha = pm.Normal('alpha', mu=options['param_ests'][0], sd=2)
+        beta = pm.Normal('beta', mu=options['param_ests'][1], sd=2)
+        # Create priors for gamma
+        if options['param_constraints'][2] is True:
+            gamma = pm.Normal('gamma', mu=options['param_ests'][2], sd=2)
+        else:
+            gamma = options['param_ests'][2]
+        # Create prior for lambda
+        if options['param_constraints'][3] is True:
+            if data[len(data[:, 2])-1, 1] > 0.80:
+                lambda_ = pm.Beta('lambda', 2, 20)
+            else:
+                lambda_ = pm.Beta('lambda', 1.5, 12)
+        else:
+            lambda_ = options['param_ests'][3]
 
-    # Generate samples from compiled model 
-    sample = model.sampling(data=data_model, iter=options['iter'], chains=options['chains'])
-    return sample
+        # Create the probability from the logistic function
+        p = pm.Deterministic('p',  _psyfunction(x,
+                                                alpha,
+                                                beta,
+                                                gamma,
+                                                lambda_,
+                                                options['sigmoid_type']))
 
+        # Create the bernoulli parameter which makes use of the observed data
+        observed = pm.Bernoulli('obs', p, observed=y)
 
-#######################################################################
-#  EXTRACT PARAMETERS FROM POSTERIOR
-#######################################################################
-def extractParams(data, options, sample):
-    
-    # Check arguments provided are numerical for threshold
-    if options['param_ests'] not in ('mean'):
-        assert False, 'Options provided are not those made available by module. Revise options provided.'
-    if isinstance(options['thresholdPC'], (int, float, complex)) == False:
-        assert False, 'Please provide a numerical argument for options["thresholdPC"].'
-    if isinstance(options['nAFC'], (int, float, complex)) == False:
-        assert False, 'Please provide a numerical argument for options["nAFC"].'
-    if options['lapse'] not in (True, False):
-        assert False, 'Options provided are not those made available by module. Revise options provided.'        
-    if options['sigmoidType'] not in ('cnorm', 'logistic', 'cauchy', 'weibull'):
-        assert False, 'Options provided are not those made available by module. Revise options provided.'    
+        # Choose MCMC sampling algorithm
+        mcmc_sampler = pm.Metropolis()
 
-    # Extract summary table
-    fit_summary = sample.summary()
-    # Extract summary of mean estimates for parameters
-    params = pd.DataFrame([fit_summary['summary'][:,0]],columns=fit_summary['summary_rownames'])
-    
-    # Define lambda based on option
-    if options['lapse'] == True:
-        lamb = params['lambda'][0]
-    elif options['lapse'] == False:
-        lamb = 0
-    
-    # Generate fitted function based on parameters from posterior
-    x = np.linspace(data.x.min(),data.x.max(),1000)
-    if options['sigmoidType'] == 'cnorm':  
-        y_pred = options['gamma'] + (1-lamb-options['gamma'])*sc.stats.norm.cdf(x,params['mu'][0],params['sigma'][0])
-    elif options['sigmoidType'] == 'cauchy': 
-        y_pred = options['gamma'] + (1-lamb-options['gamma'])*sc.stats.cauchy.cdf(x,params['mu'][0],params['sigma'][0])
-    elif options['sigmoidType'] == 'logistic':    
-        y_pred = options['gamma'] + (1-lamb-options['gamma'])*(1 / (1 + np.exp(-(x- params['mu'][0])/params['sigma'][0] )))
-    elif options['sigmoidType'] == 'weibull':    
-        y_pred = options['gamma'] + (1-lamb-options['gamma'])* (1 - np.exp(-((x/params['alpha'][0])**params['beta'][0])))
-    
-    # Extract estimate of threshold from fitted function
-    threshold = np.interp(options['thresholdPC'], y_pred, x)
-    
-    return params, threshold
+        # Sample from the posterior using the sampling method
+        model_trace = pm.sample(options['n_samples'],
+                                step=mcmc_sampler,
+                                njobs=1,
+                                chains=2)
 
-
-
-#######################################################################
-#  GENERATE SUMMARY TABLE FROM DATA INPUT 
-#######################################################################
-
-def gen_aggregateData(data):
-    
-    print('----------------------------------------------')        
-    print('''WARNING: 
-             Grouping data based on assumption that raw data was provided.
-             Change settings through assignment in options.''')
-    print('----------------------------------------------')   
-    
-    # Count the number of corect responses per stim. level
-    num_corr_responses = data.groupby('x')['y'].sum()    
-    num_corr_responses = num_corr_responses.reset_index() 
-    
-    # Count number of total stimulus presentations
-    num_stim_presentations = data.groupby('x')['y'].count()
-    num_stim_presentations = num_stim_presentations.reset_index()      
-    
-    # Calculate proportion correct per stimulus level         
-    prop_correct = num_corr_responses['y'] / num_stim_presentations['y']                     
-    prop_correct = prop_correct.reset_index()                        
-                    
-    # Combine prop_correct series with count to form final data frame
-    summary_dat = pd.DataFrame(data = dict({'x':num_corr_responses['x'], 
-                                           'y':prop_correct['y'], 
-                                           'N':num_stim_presentations['y']}))                                   
-        
-    return summary_dat
-            
-    
+        return model_trace

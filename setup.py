@@ -1,14 +1,21 @@
-# -*- coding: utf-8 -*-
 """
-Created on Thu Sep 28 08:56:53 2017
-
-@author: Mike
+*******************************************************
+*
+*  BayesFit - SETUP FILE
+*  
+*  Version:      Version 2.0
+*  License:      Apache 2.0
+*  Written by:   Michael Slugocki
+*  Created on:   September, 2017
+*  Last updated: April 18, 2018
+*
+*******************************************************
 """
 
 from setuptools import setup
 
 setup(name='bayesfit',
-      version='1.5',
+      version='2.0',
       description='Bayesian Psychometric Curve Fitting Module',
       url='http://github.com/slugocm/BayesFit',
       author='Michael Slugocki',
