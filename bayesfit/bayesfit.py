@@ -106,7 +106,7 @@ def _fitmodel(data, options):
     y = np.array([])
     for i in range(len(data[:, 0])):
         approx_numsequence = np.round(data[i, 1]*data[i, 2])
-        response_y = np.zeros(data[i, 2])
+        response_y = np.zeros(int(data[i, 2]))
         response_y[:int(approx_numsequence)] = 1
         response_x = np.repeat(data[i, 0], data[i, 2])
         x = np.append(x, response_x)
