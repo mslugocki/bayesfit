@@ -14,6 +14,6 @@ install:
 script:
 #  - cd tests && pytest
   - python setup.py install
-  - nosetests --with-coverage # Add me to run nose with coverage support.
+  - nosetests -v --with-coverage # Add me to run nose with coverage support.
 after_success:
   - coveralls
