@@ -12,4 +12,4 @@
 *******************************************************
 """
 
-from .bayesFit import *
+from .bayesfit import *

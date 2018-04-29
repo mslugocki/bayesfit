@@ -32,6 +32,7 @@ from extractThreshold import extract_threshold as get_threshold
 from gewekePlot import geweke_plot as geweke_plot
 from plot_CDF import plot_cdf as plot_cdf
 
+
 #################################################################
 #  BAYESFIT CORE FUNCTION THAT ACCEPTS ARGUMENTS FROM USER
 #################################################################

@@ -21,7 +21,7 @@ setup(name='bayesfit',
       author='Michael Slugocki',
       author_email='slugocm@mcmaster.ca',
       license='Apache 2.0',
-      packages=['bayesFit'],
+      packages=['bayesfit'],
       zip_safe=False)
 
 
