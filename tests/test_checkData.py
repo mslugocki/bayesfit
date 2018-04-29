@@ -16,7 +16,7 @@
 #  IMPORT MODULES 
 #################################################################
 import numpy as np
-from checkData import check_data
+import bayesfit as bf
 
 
 #################################################################
@@ -41,7 +41,7 @@ def _batch_false(error):
         y[0] = -0.1
         data = np.array([x, y, N]).T
     # Call function with arguments above
-    check_data(data, batch)
+    bf.check_data(data, batch)
 
 
 def _batch_true(error):    
@@ -65,7 +65,7 @@ def _batch_true(error):
         data = dict()
         data['obs1'] = np.array([x, y, N]).T
     # Call function with arguments above
-    check_data(data, batch)
+    bf.check_data(data, batch)
 
 
 #################################################################
