@@ -94,7 +94,8 @@ Simply type:
     :alt: travis-ci build status
     
 .. |coverage| image:: https://coveralls.io/repos/github/SlugocM/bayesfit/badge.svg?branch=master
-    :target: https://coveralls.io/github/SlugocM/bayesfit?branch=master
+  :target: https://coveralls.io/github/SlugocM/bayesfit?branch=master
+
 
 
 
