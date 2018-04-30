@@ -5,7 +5,7 @@ Bayesian Psychometric Curve Fitting tool
     :alt: BayesFit Logo
     :scale: 50 %
 
-|pypi| |travis| |coveralls|
+|pypi| |travis| |coverage|
 
 :Authors:
     Michael Slugocki
@@ -24,10 +24,10 @@ Release 2.0 (noteable mentions):
 
 - **BayeFit has switched from use of pystan to pyMC3. We feel that this module is better suited for our purposes, and also has less overhead for Windows users** 
 - Entirely new function for model fitting that does everything in one shot!
-- Batch fitting has now been released with greater ease of use. The same function as for fitting a model to a single dataset is uesd.
+- Batch fitting has now been released with greater ease of use. The same function as for fitting a model to a single dataset is used.
 - A function to perform the Geweke diagnostic test for convergence of chains has been added.
-- Unit tests on all functions have been updated, and a coverage report (badge above) has been introduced.
-- Added additional safeguards for using options that are not permitted has been added. 
+- Unit tests on all functions have been updated, and a coverage report (badge above) has been posted on the BayesFit read me page.
+- Added additional safeguards for using options that are not permitted have been added. 
 
 Link to v2.0 in PyPI archive (coming soon)
 
@@ -93,7 +93,7 @@ Simply type:
     :target: https://travis-ci.org/SlugocM/bayesfit/
     :alt: travis-ci build status
     
-.. |coveralls| image:: https://coveralls.io/repos/github/SlugocM/bayesfit/badge.svg?branch=master
+.. |coverage| image:: https://coveralls.io/repos/github/SlugocM/bayesfit/badge.svg?branch=master
     :target: https://coveralls.io/github/SlugocM/bayesfit?branch=master
 
 
