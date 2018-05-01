@@ -29,7 +29,7 @@ Release 2.0 (noteable mentions):
 - Unit tests on all functions have been updated, and a coverage report (badge above) has been posted on the BayesFit read me page.
 - Added additional safeguards for using options that are not permitted have been added. 
 
-Link to v2.0 in PyPI archive (coming soon)
+Link to v2.0 in PyPI archive (https://pypi.org/project/bayesfit/)
 
 --------------------------------------------------
 
