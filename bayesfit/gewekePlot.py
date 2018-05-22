@@ -3,7 +3,7 @@
 *
 *  geweke_plot - GENERATE GEWEKE PLOT TO TEST FOR CONVERGENCE
 *  
-*  Version:      Version 2.0
+*  Version:      Version 2.1
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   April 18, 2017
@@ -26,7 +26,8 @@ import matplotlib.pyplot as plt
 # Function to correlate two segments of trace
 def _rhot(x, t_idx):
     n = len(x)
-    return np.corrcoef(x[0:(n-t_idx)], x[t_idx:n])[0,1]
+    return np.corrcoef(x[0:(n-t_idx)], x[t_idx:n])[0, 1]
+
 
 def _geweke(trace, intervals, length):
     # Divide trace minus burn-in into equal intervals. 
@@ -49,10 +50,10 @@ def _geweke(trace, intervals, length):
             rho_a += 2*_rhot(sub_trace_a, i+1)
             rho_b += 2*_rhot(sub_trace_b, i+1)
             
-        var_a  = np.var(sub_trace_a)*rho_a/length
-        var_b  = np.var(sub_trace_b)*rho_b/length
+        var_a = np.var(sub_trace_a)*rho_a/length
+        var_b = np.var(sub_trace_b)*rho_b/length
         
-        z[k] = (theta_a-theta_b)/np.sqrt( var_a + var_b)
+        z[k] = (theta_a-theta_b)/np.sqrt(var_a + var_b)
     
     return z
 
@@ -62,15 +63,15 @@ def _geweke(trace, intervals, length):
 #################################################################
 def geweke_plot(trace, intervals, length):
     # Plot Geweke z-scores
-    geweke_zscores = _geweke(trace = trace, 
-                             intervals = intervals, 
-                             length = length)
-    plt.plot(geweke_zscores,'o')
-    plt.hlines([-2,2], 
-               xmin = 0, 
-               xmax = intervals + 1, 
+    geweke_zscores = _geweke(trace=trace,
+                             intervals=intervals,
+                             length=length)
+    plt.plot(geweke_zscores, 'o')
+    plt.hlines([-2, 2],
+               xmin=0,
+               xmax=intervals + 1,
                linestyles='dotted')
-    plt.ylim(-3,3)
+    plt.ylim(-3, 3)
     plt.xlabel('Interval')
     plt.ylabel('Geweke z-score')
     plt.show()
