@@ -3,27 +3,26 @@
 *
 *  BayesFit - CORE FILE
 *  
-*  Version:      Version 2.0
+*  Version:      Version 2.2
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   September, 2017
-*  Last updated: April 29, 2018
+*  Last updated: May 29, 2018
 *
 *******************************************************
 """
-
 
 #################################################################
 #  IMPORT MODULES 
 #################################################################
 
 import numpy as np
+import re
 import os 
 import matplotlib
-if os.environ.get('DISPLAY','') == '':
+if os.environ.get('DISPLAY', '') == '':
     print('no display found. Using non-interactive Agg backend')
     matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 import pymc3 as pm
 
 from .checkData import check_data as _check_data
@@ -34,12 +33,15 @@ from .checkOptions import check_options as _check_options
 from .psyFunction import psyfunction as _psyfunction
 from .extractMetrics import extract_metrics as _extract_metrics
 from .extractThreshold import get_threshold
+from .extractPriors import extract_priors as _extract_priors
+from .checkPriors import check_priors as _check_priors
+from .definePriors import define_priors as _define_priors
 from .gewekePlot import geweke_plot
 from .plot_CDF import plot_cdf
 
 
 #################################################################
-#  BAYESFIT CORE FUNCTION THAT ACCEPTS ARGUMENTS FROM USER
+#  BAYESFIT CORE FUNCTION THAT ACCEPTS ARGUMENTS FROM USE 
 #################################################################
 
 def fitmodel(data,
@@ -49,20 +51,21 @@ def fitmodel(data,
              sigmoid_type='logistic',
              param_ests=None,
              param_constraints=None,
+             priors=None,
              threshold=0.75,
              n_samples=5000,
              chains=2,
              n_workers=1
              ):
-
+    
     # Check that user provided data meets structure expected
     _check_data(data, batch)
 
     # Check whether x-values need to be log-spaced
-    data, logspace = _check_logspace(data, logspace, sigmoid_type)
+    data_copy, logspace = _check_logspace(data, logspace, sigmoid_type)
 
     # Check that parameter estimates/constraints are reasonable
-    param_ests = _check_params(data, param_ests, nafc, batch)
+    param_ests = _check_params(data_copy, param_ests, nafc, batch)
 
     # Check parameter constraints provided
     param_constraints = _check_constraints(param_constraints)
@@ -75,10 +78,17 @@ def fitmodel(data,
     options['sigmoid_type'] = sigmoid_type
     options['param_ests'] = param_ests
     options['param_constraints'] = param_constraints
+    options['priors'] = priors
     options['threshold'] = threshold
     options['n_samples'] = n_samples
     options['chains'] = chains
     options['n_workers'] = n_workers
+
+    if options['priors'] is not None:
+        # Extract priors defined by user 
+        options = _extract_priors(options)
+        # Check priors defined by user 
+        _check_priors(options)
 
     # Check that all options provided by user or defaults assigned are acceptable
     _check_options(options)
@@ -87,14 +97,14 @@ def fitmodel(data,
     if batch is True:
         metrics = dict()
         trace = dict()
-        for keys in data:
-            trace[keys] = _fitmodel(data[keys], options)
+        for keys in data_copy:
+            trace[keys] = _fitmodel(data_copy[keys], options)
             metrics[keys] = _extract_metrics(trace[keys], options)
-            metrics[keys]['threshold'] = get_threshold(data[keys], metrics[keys], options, options['threshold'])
+            metrics[keys]['threshold'] = get_threshold(data_copy[keys], metrics[keys], options, options['threshold'])
     elif batch is False:
-        trace = _fitmodel(data, options)
+        trace = _fitmodel(data_copy, options)
         metrics = _extract_metrics(trace, options)
-        metrics['threshold'] = get_threshold(data, metrics, options, options['threshold'])
+        metrics['threshold'] = get_threshold(data_copy, metrics, options, options['threshold'])
     # Return tuple of objects
     return trace, metrics, options
 
@@ -119,23 +129,33 @@ def _fitmodel(data, options):
     
     # Fit model
     with pm.Model() as fitted_model:
-
-        # Create the priors for alpha and beta parameters
-        alpha = pm.Normal('alpha', mu=options['param_ests'][0], sd=2)
-        beta = pm.Normal('beta', mu=options['param_ests'][1], sd=2)
-        # Create priors for gamma
-        if options['param_constraints'][2] is True:
-            gamma = pm.Normal('gamma', mu=options['param_ests'][2], sd=2)
-        else:
-            gamma = options['param_ests'][2]
-        # Create prior for lambda
-        if options['param_constraints'][3] is True:
-            if data[len(data[:, 2])-1, 1] > 0.80:
-                lambda_ = pm.Beta('lambda', 2, 20)
+        if options['priors'] is not None:
+            # Define distributions
+            alpha, beta, gamma, lambda_ = _define_priors(data, options)
+            
+        else: 
+            # Create the priors for alpha and beta parameters
+            alpha = pm.Normal('alpha', 
+                              mu=options['param_ests'][0], 
+                              sd=2)
+            beta = pm.Gamma('beta', 
+                            alpha=options['param_ests'][1], 
+                            beta=0.5)
+            # Create priors for gamma
+            if options['param_constraints'][2] is True:
+                gamma = pm.Normal('gamma',
+                                  mu=options['param_ests'][2], 
+                                  sd=0.2)
             else:
-                lambda_ = pm.Beta('lambda', 1.5, 12)
-        else:
-            lambda_ = options['param_ests'][3]
+                gamma = options['param_ests'][2]
+            # Create prior for lambda
+            if options['param_constraints'][3] is True:
+                if data[len(data[:, 2])-1, 1] > 0.80:
+                    lambda_ = pm.Beta('lambda', 2, 20)
+                else:
+                    lambda_ = pm.Beta('lambda', 1.5, 12)
+            else:
+                lambda_ = options['param_ests'][3]
 
         # Create the probability from the logistic function
         p = pm.Deterministic('p',  _psyfunction(x,

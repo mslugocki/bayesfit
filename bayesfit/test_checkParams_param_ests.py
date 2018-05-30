@@ -3,7 +3,6 @@
 *
 *  test_checkParams - UNIT TEST FOR TRAVIS CI
 *  
-*  Version:      Version 2.0
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   April 28, 2017

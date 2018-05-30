@@ -3,7 +3,6 @@
 *
 *  TRAVIS CI SYNC TEST
 *  
-*  Version:      Version 2.0
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   September, 2017

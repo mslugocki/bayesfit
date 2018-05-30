@@ -38,10 +38,10 @@ def check_params(data, param_ests, nafc, batch):
         elif len(param_ests) == 2:
             print('Setting parameter estimates for gamma and lambda to default values!')
             param_ests.append(1/nafc)
-            param_ests.append(0)
+            param_ests.append(0.001)
         elif len(param_ests) == 3:
             print('Setting parameter estimates for lambda to default value!')
-            param_ests.append(0)
+            param_ests.append(0.001)
         elif len(param_ests) > 4:
             raise Exception('''User Error: More than 4 estimates for parameters of the model provided!''')
     elif param_ests is None:
@@ -59,7 +59,7 @@ def check_params(data, param_ests, nafc, batch):
             scale_guess = 1
         # Set initial parameter estimates
         # default: alpha = lin_guess; beta = 1; gamma = 1/nAFC; lambda = 0)
-        param_ests = [scale_guess, 3, 1/nafc, 0]
+        param_ests = [scale_guess, 5, 1/nafc, 0.001]
 
     return param_ests
 

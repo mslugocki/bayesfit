@@ -22,8 +22,9 @@ import numpy as np
 #################################################################
 # Convert x-values to logspace
 def convert_logspace(data):
-    data[:, 0] = np.log10(data[:, 0])
-    return data
+    data_x_logtrans = np.log10(data[:, 0])
+    data_trans = np.array([data_x_logtrans, data[:,1], data[:,2]]).T
+    return data_trans
 
 
 #################################################################
@@ -38,15 +39,18 @@ def check_logspace(data, logspace, sigmoid_type):
     if logspace is None:
         if sigmoid_type in ('weibull', 'log-quick'):
             logspace = True
-            if data[:,0].min() < 0:
+            if data[:, 0].min() < 0:
                 raise Exception('Cannot convert negative data points to log-spaced values!')
             # Convert x-values in data
-            data = convert_logspace(data)
+            data_copy = convert_logspace(data)
         else:
             logspace = False
+            data_copy = data
     elif logspace is True:
-        if data[:,0].min() < 0:
+        if data[:, 0].min() < 0:
             raise Exception('Cannot convert negative data points to log-spaced values!')
         # Convert x-values in data
-        data = convert_logspace(data)
-    return data, logspace
+        data_copy = convert_logspace(data)
+    elif logspace is False:
+        data_copy = data
+    return data_copy, logspace

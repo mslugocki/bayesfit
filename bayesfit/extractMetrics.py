@@ -3,11 +3,10 @@
 *
 *  extractMetrics - EXTRACT RELEVANT METRICS FROM TRACE
 *  
-*  Version:      Version 2.0
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   September, 2017
-*  Last updated: April 18, 2018
+*  Last updated: May 29, 2018
 *
 *******************************************************
 """
@@ -47,6 +46,6 @@ def extract_metrics(trace, options):
         metrics['lambda'] = pm.summary(trace, varnames=['lambda'])
         metrics['Fit'][3] = pm.summary(trace, varnames=['lambda'])['mean'][0]
     else:
-        metrics['Fit'][2] = options['param_ests'][3]
+        metrics['Fit'][3] = options['param_ests'][3]
     
     return metrics

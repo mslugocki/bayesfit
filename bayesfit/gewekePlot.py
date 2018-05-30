@@ -3,7 +3,6 @@
 *
 *  geweke_plot - GENERATE GEWEKE PLOT TO TEST FOR CONVERGENCE
 *  
-*  Version:      Version 2.1
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   April 18, 2017
