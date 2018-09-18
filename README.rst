@@ -13,6 +13,10 @@ Bayesian Psychometric Curve Fitting tool
 
 --------------------------------------------------
 
+**API documentation**: http://www.slugocm.ca/bayesfit/
+
+--------------------------------------------------
+
 NEWS: 
 
 **VERSION 2.3 NOW RELEASED!**
