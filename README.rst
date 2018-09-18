@@ -17,6 +17,13 @@ Bayesian Psychometric Curve Fitting tool
 
 --------------------------------------------------
 
+--------------------------------------------------
+
+**Issues? Submit a question here**: https://github.com/SlugocM/bayesfit/issues
+
+--------------------------------------------------
+
+
 NEWS: 
 
 **VERSION 2.3 NOW RELEASED!**
