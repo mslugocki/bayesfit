@@ -1,1 +1,4 @@
 Makefile
+/build
+/dist
+/bayesfit.egg-info
