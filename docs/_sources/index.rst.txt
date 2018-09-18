@@ -45,6 +45,14 @@ Utility functions
    pearson_chisqr.rst
    bci.rst
 
+Having an issue with BayesFit?
+------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   issue_tracker.rst
+
 API documentation
 ==================
 
