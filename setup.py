@@ -7,7 +7,7 @@
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   September, 2017
-*  Last updated: May 29, 2018
+*  Last updated: September 18, 2018
 *
 *******************************************************
 """
@@ -15,7 +15,7 @@
 from setuptools import setup
 
 setup(name='bayesfit',
-      version='2.2',
+      version='2.3',
       description='Bayesian Psychometric Curve Fitting Module',
       url='http://github.com/slugocm/BayesFit',
       author='Michael Slugocki',

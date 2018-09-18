@@ -15,39 +15,37 @@ Bayesian Psychometric Curve Fitting tool
 
 NEWS: 
 
-**VERSION 2.2 NOW RELEASED!**
+**VERSION 2.3 NOW RELEASED!**
 
 Release Notes
 ------------------
 
-Release 2.2 (noteable mentions):
+Release 2.3 (noteable mentions):
 
-- Added ability to define priors for each parameter of model
-- Altered default priors to promote efficient sampling of posterior
-
-Link to v2.2 in PyPI archive (https://pypi.org/project/bayesfit/)
+- **Now uses numerical integration to avoid convergence errors**
+- Removed PyMC3 dependency 
+- Mulitple new functions have been written for fitting, plotting, and extracting metrics
+- **Full API documentation now available** 
 
 --------------------------------------------------
 
-**BayesFit** provides a simple and easy to use interface to fit and plot psychometric functions by making use of PyMC3, which perform Bayesian inference using MCMC sampling.  
+**BayesFit** provides a simple and easy to use interface to fit and plot psychometric functions using Bayesian inference via numerical integration.
 
 Important links
 ---------------
-- Use documentation: https://github.com/SlugocM/bayesfit/blob/master/documentation/bayesfit_documentation.ipynb
+- Use documentation: https://github.com/SlugocM/bayesfit/docs
 - Source code repository: https://github.com/slugocm/bayesfit
 - Issue tracker: https://github.com/slugocm/bayesfit/issues
 - For latest update on new version releases, follow me on twitter: https://twitter.com/SlugocM
-
-- pyMC3 documentation: https://docs.pymc.io/
 
 
 Basic Installation [Linux/ Windows/ macOS]
 ------------------
 
 Packages required (versions specified in requirements.txt): 
-`pyMC3 <https://docs.pymc.io/>`_
 `Numpy <http://www.numpy.org/>`_
 `Matplotlib <https://matplotlib.org/>`_
+`Scipy <https://docs.scipy.org/doc/>`_
 
 To install required packages if the versions are out of date, or not installed in your working environment, first download the **requirements.txt** file in this repository.  Then navigate to the directory that contains the downloaded text file using the command-prompt.  Then type: 
 
