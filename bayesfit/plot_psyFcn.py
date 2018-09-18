@@ -109,7 +109,7 @@ def plot_psyfcn(data,
                    alpha=0.5, 
                    zorder=5, 
                    marker='o')    
-     ax.plot(x_est, y_pred, linestyle='-', color='black', linewidth=2, alpha=0.85, zorder=10)
+    ax.plot(x_est, y_pred, linestyle='-', color='black', linewidth=2, alpha=0.85, zorder=10)
     ax.set_xlabel('Stimulus Intensity', fontsize=16)
     ax.set_ylabel('Proportion correct', fontsize=16)
     ax.xaxis.set_tick_params(labelsize=13)
