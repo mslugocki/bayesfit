@@ -22,6 +22,7 @@ setup(name='bayesfit',
       author_email='slugocm@mcmaster.ca',
       license='Apache 2.0',
       packages=['bayesfit'],
+      install_requires=['numpy', 'scipy', 'matplotlib'],
       zip_safe=False)
 
 
