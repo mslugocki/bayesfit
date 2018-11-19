@@ -6,7 +6,7 @@
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   September 3, 2018
-*  Last updated: September 13, 2018
+*  Last updated: November 19, 2018
 *
 *******************************************************
 """
@@ -24,7 +24,7 @@ import scipy.stats as st
 def _define_distribution(xx, user_defined_distro, distro_parameters):
     """Assigns probability density to parameters defined by grid
     and specified distribution.
-    
+
     Keyword arguments:
     xx -- range of values over which to define distribution (ndarray)
     user_defined_distro -- name of distribution (string)
@@ -32,29 +32,42 @@ def _define_distribution(xx, user_defined_distro, distro_parameters):
     """
     # Define distrobution based on inputs
     if user_defined_distro == 'Unif':
-        distro = st.uniform.pdf(xx, 
-                                distro_parameters[0], 
+        distro = st.uniform.pdf(xx,
+                                distro_parameters[0],
                                 distro_parameters[1])
     elif user_defined_distro == 'Norm':
-        distro = st.norm.pdf(xx, 
-                             distro_parameters[0], 
+        distro = st.norm.pdf(xx,
+                             distro_parameters[0],
                              distro_parameters[1])
     elif user_defined_distro == 'Log-Norm':
-        distro = st.lognorm.pdf(xx, 
-                                distro_parameters[0], 
+        distro = st.lognorm.pdf(xx,
+                                distro_parameters[0],
                                 distro_parameters[1])
     elif user_defined_distro == 'Beta':
-        distro = st.beta.pdf(xx, 
-                             distro_parameters[0], 
+        distro = st.beta.pdf(xx,
+                             distro_parameters[0],
                              distro_parameters[1])
     elif user_defined_distro == 'Gamma':
-        distro = st.gamma.pdf(xx, 
-                              distro_parameters[0], 
+        distro = st.gamma.pdf(xx,
+                              distro_parameters[0],
                               distro_parameters[1])
-    
-    # Ensure distribution sums to one
-    distro /= distro.sum()
-        
+
+    # Check whether vector or probabilities returns non-zero sum
+    if distro.sum() == 0.0:
+        raise ValueError('''Error applying priors: A vector representing
+            the prior probabilities along the distribution for one of the
+            parameters you have specified sums to zero. This suggests one of
+            the prior distributions provided are not within the range of, or
+            far off from those regions where the best estimated value
+            likely exists.
+            \n
+            Please adjust the priors provided to capture regions where
+            value estimates are more probable, or set priors to
+            None to obtain use MLE.''')
+    else:
+        # Ensure distribution sums to one
+        distro /= distro.sum()
+
     return distro
 
 
@@ -64,14 +77,14 @@ def _define_distribution(xx, user_defined_distro, distro_parameters):
 def apply_priors(data, options, posterior, grid):
     """Applies prior to likelihood surface resulting in
     use of Bayesian inference to produce posterior surface.
-    
+
     Keyword arguments:
     data -- m x 3 numpy array
     options -- contains all options used to fit model (dictionary)
     posterior -- posterior surface (ndarray)
-    grid -- grid of values over which likelihood was computed over (ndarray) 
+    grid -- grid of values over which likelihood was computed over (ndarray)
     """
-    # Apply prior for scale 
+    # Apply prior for scale
     if 'scale' in options['priors_params'].keys():
         prior_scale = _define_distribution(grid['scale'], 
                                                options['priors_definitions']['scale'],

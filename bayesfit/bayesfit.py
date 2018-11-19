@@ -7,7 +7,7 @@
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   September, 2017
-*  Last updated: September 17, 2018
+*  Last updated: November 19, 2018
 *
 *******************************************************
 """
@@ -166,6 +166,7 @@ def _fit_Grid(data, options):
     
     # Compute likelihood
     posterior = _grid_likelihood(data, options, grid)
+    metrics['likelihood_surface'] = posterior
     
     # Apply priors to likel1ihood if using Bayesian inference
     if options['priors'] is not None:
