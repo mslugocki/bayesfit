@@ -31,8 +31,8 @@ Some minor patches for version release 2.3 have been merged into the main branch
 Patch Notes
 ------------------
 
-19/11/2018 - fixed issue arising when user provided priors were extremely off the mark
-15/11/2018 - setup.py file now rewquires modules to be installed
+- 19/11/2018 - fixed issue arising when user provides priors that are extremely off the mark
+- 15/11/2018 - setup.py file now requires modules to be installed
 
 Release Notes
 ------------------
