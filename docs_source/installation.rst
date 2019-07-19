@@ -6,7 +6,7 @@ Installation
 Method 1: `pip install bayesfit`
 --------------------------------
 
-The easiest method to install the Bayesfit module is via python packahe index using the following line of code in your terminal or command line::
+The easiest method to install the Bayesfit module is via python package index using the following line of code in your terminal or command line::
 
 	pip install bayesfit
 
