@@ -38,7 +38,7 @@ def get_threshold(data, options, metrics, threshold_pc, estimate_type = 'MAP'):
         idx = (np.abs(y-value)).argmin()
         return x[idx]
     
-    x_est = np.linspace(data[:, 0].min(), data[:, 0].max(), 1e4)
+    x_est = np.linspace(data[:, 0].min(), data[:, 0].max(), int(1e4))
     
     if estimate_type not in ('MAP', 'Mean'):
         raise ValueError('Please provide appropriate argument for estimate type (e.g., MAP, Mean)')
