@@ -23,7 +23,7 @@ Reviewing the code base years later as my career and profiency at programming ha
 
 If you are interested in continuing development, helping with maintenance, or anything else that might help improve BayesFit, feel free to reach out. ✌️ 
 
-Kind Regards,
+Kind Regards,  
 - M 
 
 --------------------------------------------------
