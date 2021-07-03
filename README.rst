@@ -13,11 +13,24 @@ Bayesian Psychometric Curve Fitting tool
 
 --------------------------------------------------
 
+**Special Note from Author:**
+
+Hello folks!  
+
+I wanted to thank you all for taking the time to stop by and make use of BayesFit.  The BayesFit module was developed midway through my Ph.D. dissertation, born out of a need for a fairly lightweight module that fully supported Python 3 (time flies!), and could fit/plot psychometric functions to data.  To that aim, I hope BayesFit has helped others along the way. 
+
+Reviewing the code base years later as my career and profiency at programming have developed, much can be vastly improved.  For example, object oriented paradigms can be applied, computations further optimized, and additional features implemented.  Unfortunately, commitments to my career and family life no longer permit me to update this module, and so I leave it to the community to determine the future of BayesFit.
+
+If you are interested in continuing development, helping with maintenance, or anything else that might help improve BayesFit, feel free to reach out. ✌️ 
+
+Kind Regards,
+- M 
+
+--------------------------------------------------
+
 **Citation:**
 
 Slugocki, M., Sekuler, A.B. and Bennett, P., 2019. BayesFit: A tool for modeling psychophysical data using Bayesian inference. *Journal of Open Research Software*, 7(1), p.2. DOI: http://doi.org/10.5334/jors.202
-
---------------------------------------------------
 
 --------------------------------------------------
 
@@ -25,22 +38,14 @@ Slugocki, M., Sekuler, A.B. and Bennett, P., 2019. BayesFit: A tool for modeling
 
 --------------------------------------------------
 
---------------------------------------------------
-
 **Issues? Submit a question here**: https://github.com/SlugocM/bayesfit/issues
 
 --------------------------------------------------
-
 
 NEWS: 
 
 An article on BayesFit has now been published in the Journal of Open Research Software!  See: http://doi.org/10.5334/jors.202 
 
-Patch Notes
-------------------
-
-- 19/11/2018 - fixed issue arising when user provides priors that are extremely off the mark
-- 15/11/2018 - setup.py file now requires modules to be installed
 
 Release Notes
 ------------------
@@ -58,7 +63,7 @@ Release 2.3 (noteable mentions):
 
 Important links
 ---------------
-- Use documentation: https://github.com/SlugocM/bayesfit/docs
+- Use documentation: http://www.slugocm.ca/bayesfit/
 - Source code repository: https://github.com/slugocm/bayesfit
 - Issue tracker: https://github.com/slugocm/bayesfit/issues
 - For latest update on new version releases, follow me on twitter: https://twitter.com/SlugocM
