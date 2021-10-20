@@ -21,7 +21,7 @@ I wanted to thank you all for taking the time to stop by and make use of BayesFi
 
 Reviewing the code base years later as my career and profiency at programming have developed, much can be vastly improved.  For example, object oriented paradigms can be applied, computations further optimized, and additional features implemented.  Unfortunately, commitments to my career and family life no longer permit me to update this module, and so I leave it to the community to determine the future of BayesFit.
 
-If you are interested in continuing development, helping with maintenance, or anything else that might help improve BayesFit, feel free to reach out. ✌️ 
+If you are interested in continuing development, helping with maintenance, or anything else that might help improve BayesFit, feel free to reach out. 🌳
 
 Kind Regards,  
 - M 
