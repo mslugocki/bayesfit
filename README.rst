@@ -15,16 +15,16 @@ Bayesian Psychometric Curve Fitting tool
 
 **Special Note from Author:**
 
-Hello folks!  
+[ updated on: 2024/01/10 ]
 
-I wanted to thank you all for taking the time to stop by and make use of BayesFit.  The BayesFit module was developed midway through my Ph.D. dissertation, born out of a need for a fairly lightweight module that fully supported Python 3 (time flies!), and could fit/plot psychometric functions to data.  To that aim, I hope BayesFit has helped others along the way. 
+Hello BayesFitters!
 
-Reviewing the code base years later as my career and profiency at programming have developed, much can be vastly improved.  For example, object oriented paradigms can be applied, computations further optimized, and additional features implemented.  Unfortunately, commitments to my career and family life no longer permit me to update this module, and so I leave it to the community to determine the future of BayesFit.
+Excited to announce that I will be revamping Bayesfit in the coming weeks / months ahead 🥳  Also, to celebrate this event, I purchased the domain **bayesfit.org** to provide a stable resource for managing documentation, as well as providing more in-depth updates for those folks who are interested.
 
-If you are interested in continuing development, helping with maintenance, or anything else that might help improve BayesFit, feel free to reach out. 🌳
-
+Please stay tuned, and thank you for using BayesFit. Your feedback is always appreciated.
+ 
 Kind Regards,  
-- M 
+🌳 M 🌳
 
 --------------------------------------------------
 
@@ -33,6 +33,8 @@ Kind Regards,
 Slugocki, M., Sekuler, A.B. and Bennett, P., 2019. BayesFit: A tool for modeling psychophysical data using Bayesian inference. *Journal of Open Research Software*, 7(1), p.2. DOI: http://doi.org/10.5334/jors.202
 
 --------------------------------------------------
+
+🚧 under construction: currently moving API documentation to bayesfit.org 🚧
 
 **API documentation**: http://www.slugocm.ca/bayesfit/
 
