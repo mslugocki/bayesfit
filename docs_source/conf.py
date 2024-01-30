@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath('.//bayesfit'))
 # -- Project information -----------------------------------------------------
 
 project = 'BayesFit'
-copyright = '2018, Michael Slugocki'
+copyright = '2024, Michael Slugocki'
 author = 'Michael Slugocki'
 
 # The short X.Y version

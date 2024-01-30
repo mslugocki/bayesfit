@@ -1,33 +1,24 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="English">
+<html lang="English">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Basic Usage Example &#8212; BayesFit 2.3 documentation</title>
-    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '2.3',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinxdoc.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="bayesfit.fitmodel - Main function used to fit models" href="fitmodel.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,102 +31,60 @@
         <li class="right" >
           <a href="installation.html" title="Installation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Basic Usage Example</a></li> 
       </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Basic Usage Example</a><ul>
-<li><a class="reference internal" href="#example-1-maximum-likelihood-estimation-mle">Example 1 : Maximum Likelihood Estimation (MLE)</a></li>
-<li><a class="reference internal" href="#example-2-mle-with-additional-options">Example 2 : MLE with additional options</a></li>
-<li><a class="reference internal" href="#example-3-bayesian-inference">Example 3 : Bayesian Inference</a></li>
-<li><a class="reference internal" href="#example-4-batch-fitting">Example 4 : Batch fitting</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="installation.html"
-                        title="previous chapter">Installation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="fitmodel.html"
-                        title="next chapter"><code class="docutils literal"><span class="pre">bayesfit.fitmodel</span></code> - Main function used to fit models</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/basic_usage.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="basic-usage-example">
-<h1>Basic Usage Example<a class="headerlink" href="#basic-usage-example" title="Permalink to this headline">¶</a></h1>
+  <section id="basic-usage-example">
+<h1>Basic Usage Example<a class="headerlink" href="#basic-usage-example" title="Permalink to this heading">¶</a></h1>
 <p>After <em>Bayesfit</em> is installed on your system, we are ready to get started fitting psychometric functions to data using the module. The first examples here will demonstrate the basic usage of Bayesfit</p>
 <p>We start by import the Bayesfit module into our workspace:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bayesfit</span> <span class="k">as</span> <span class="nn">bf</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bayesfit</span> <span class="k">as</span> <span class="nn">bf</span>
 </pre></div>
 </div>
 <p>Next, ensure that you have your data formatted according to required format which is a M-row by 3-column Numpy array, such as:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="38%" />
-<col width="33%" />
-<col width="29%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Stimulus intensity</th>
-<th class="head">N-trials correct</th>
-<th class="head">N-trials total</th>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Stimulus intensity</p></th>
+<th class="head"><p>N-trials correct</p></th>
+<th class="head"><p>N-trials total</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>...</td>
-<td>...</td>
-<td>...</td>
+<tbody>
+<tr class="row-even"><td><p>...</p></td>
+<td><p>...</p></td>
+<td><p>...</p></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="example-1-maximum-likelihood-estimation-mle">
-<h2>Example 1 : Maximum Likelihood Estimation (MLE)<a class="headerlink" href="#example-1-maximum-likelihood-estimation-mle" title="Permalink to this headline">¶</a></h2>
+<section id="example-1-maximum-likelihood-estimation-mle">
+<h2>Example 1 : Maximum Likelihood Estimation (MLE)<a class="headerlink" href="#example-1-maximum-likelihood-estimation-mle" title="Permalink to this heading">¶</a></h2>
 <p>The simplest procedure for fitting a model to data is to simply pass data to the <cite>fitmodel</cite> function. However, at a minimum, you will also likely want to include the argument specifying the N-alternatives possible during the experiment. For this example, let us assume a 2AFC task.</p>
 <p>Therefore, a minimal working example would be:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">M</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">ndarray</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">M</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">ndarray</span><span class="p">]</span>
 
 <span class="n">metrics</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="n">bf</span><span class="o">.</span><span class="n">fitmodel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">nafc</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>And that is it! After a short while, the module should output two variables which correspond to metrics from the fitting procedure, along with the options used to fit the model. Both these variables are dictionaries, and their full description can be found on the main page under the section for the <a class="reference internal" href="fitmodel.html"><span class="doc">fitmodel</span></a> function.</p>
 <p>We can now visualize our estimated psychometric function fit to our data using the <cite>plot_psyfcn</cite> function:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bf</span><span class="o">.</span><span class="n">plot_psyfcn</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">metrics</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bf</span><span class="o">.</span><span class="n">plot_psyfcn</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">metrics</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>which produces a plot that looks like this:</p>
 <a class="reference internal image-reference" href="_images/plot_psyfcn.png"><img alt="_images/plot_psyfcn.png" src="_images/plot_psyfcn.png" style="width: 375.0px; height: 375.0px;" /></a>
-</div>
-<div class="section" id="example-2-mle-with-additional-options">
-<h2>Example 2 : MLE with additional options<a class="headerlink" href="#example-2-mle-with-additional-options" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="example-2-mle-with-additional-options">
+<h2>Example 2 : MLE with additional options<a class="headerlink" href="#example-2-mle-with-additional-options" title="Permalink to this heading">¶</a></h2>
 <p>While the minimal working example is great, it leaves many options to be desired. One important consideration is determining which parameters should be estimated, and are considered free versus fixed, during the fitting procedure. We will also provide fixed values for gamma and lambda parameters in the model.</p>
 <p>Let us also specify which sigmoidal function to fit to the data, and decrease the density of the grid used to estimate parameters:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># List of logical arguments which correspond to: scale, slope, gamma, lambda</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List of logical arguments which correspond to: scale, slope, gamma, lambda</span>
 <span class="n">param_free</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
 
 <span class="c1"># List of float arguments for estimates of parameters: scale, slope, gamma, lambda</span>
@@ -151,13 +100,13 @@
 <span class="n">metrics</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="n">bf</span><span class="o">.</span><span class="n">fitmodel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">param_free</span> <span class="o">=</span> <span class="n">param_free</span><span class="p">,</span> <span class="n">param_ests</span> <span class="o">=</span> <span class="n">param_ests</span><span class="p">,</span> <span class="n">sigmoid_type</span> <span class="o">=</span> <span class="n">sigmoid_type</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="n">density</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example-3-bayesian-inference">
-<h2>Example 3 : Bayesian Inference<a class="headerlink" href="#example-3-bayesian-inference" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="example-3-bayesian-inference">
+<h2>Example 3 : Bayesian Inference<a class="headerlink" href="#example-3-bayesian-inference" title="Permalink to this heading">¶</a></h2>
 <p>The previous examples used only maximum likelihood estimation as the main procedure to estimate parameters, as no priors were provided.  Therefore, to make the <cite>fitmodel</cite> function perform bayesian inference, we need to provide definitions for our priors for each of our parameters.</p>
 <p>The full documentation for the prior distributions, and the correct formatting to use can be found under the section for the <a class="reference internal" href="fitmodel.html"><span class="doc">fitmodel</span></a> function.  It is important to note that the list must contain four arguments, although NoneType can be used for parameters where a prior is unwanted.</p>
 <p>Here, we define prior distributions for the parameters that control the scale and slope of our cumulative normal function:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Define cumulative normal function to use as sigmoidal function</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define cumulative normal function to use as sigmoidal function</span>
 <span class="n">sigmoid_type</span> <span class="o">=</span> <span class="s1">&#39;norm&#39;</span>
 
 <span class="c1"># List of logical arguments which correspond to: scale, slope, gamma, lambda</span>
@@ -171,26 +120,26 @@
 </pre></div>
 </div>
 <p>We can now plot the poseterior surface for the scale and slope parameters (collapsed across gamma and lambda):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/plot_posterior.png"><img alt="_images/plot_posterior.png" src="_images/plot_posterior.png" style="width: 450.0px; height: 300.0px;" /></a>
 <p>The marginal distributions can als be viewed via:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">plot_marginals</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">plot_marginals</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/plot_marginals.png"><img alt="_images/plot_marginals.png" src="_images/plot_marginals.png" style="width: 525.0px; height: 450.0px;" /></a>
 <p>Last, we can view the priors that we used during our fitting procedure via:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">plot_priors</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">metrics</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">plot_priors</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">metrics</span><span class="p">)</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/plot_priors.png"><img alt="_images/plot_priors.png" src="_images/plot_priors.png" style="width: 525.0px; height: 450.0px;" /></a>
-</div>
-<div class="section" id="example-4-batch-fitting">
-<h2>Example 4 : Batch fitting<a class="headerlink" href="#example-4-batch-fitting" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="example-4-batch-fitting">
+<h2>Example 4 : Batch fitting<a class="headerlink" href="#example-4-batch-fitting" title="Permalink to this heading">¶</a></h2>
 <p>The only major difference for batch fitting data compared with single datasets is the type of argument input into the <a class="reference internal" href="fitmodel.html"><span class="doc">fitmodel</span></a> function.  Instead of a M x 3 ndarray, each dataset will need to occupy its own key within a dictionary object as an ndarray.</p>
 <p>Therefore, if we had two datasets, we would need to construct a data object for batch fitting as follows:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Datasets in usual format</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datasets in usual format</span>
 <span class="n">data_01</span> <span class="o">=</span> <span class="p">[</span><span class="n">M</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">ndarray</span><span class="p">]</span>
 <span class="n">data_02</span> <span class="o">=</span> <span class="p">[</span><span class="n">M</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">ndarray</span><span class="p">]</span>
 
@@ -201,11 +150,11 @@
 </pre></div>
 </div>
 <p>Now simply feed this dictionary to the usual fitmodel function except flag the <em>batch</em> argument as True:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">fitmodel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">nafc</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">fitmodel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">batch</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">nafc</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Important: when batch fitting data, parameter estimates must be autogenerated by Bayesfit unless the parameter is fixed. So, in a definition such as (assuming the first two parameters are free):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Specify which parameters are free</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify which parameters are free</span>
 <span class="n">param_free</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
 
 <span class="c1"># Define parameter estimates</span>
@@ -213,11 +162,56 @@
 </pre></div>
 </div>
 <p>The first two parameters estimates provided by the user would not be used.  However the fixed parameter estimates would be used when fitting the model.</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Basic Usage Example</a><ul>
+<li><a class="reference internal" href="#example-1-maximum-likelihood-estimation-mle">Example 1 : Maximum Likelihood Estimation (MLE)</a></li>
+<li><a class="reference internal" href="#example-2-mle-with-additional-options">Example 2 : MLE with additional options</a></li>
+<li><a class="reference internal" href="#example-3-bayesian-inference">Example 3 : Bayesian Inference</a></li>
+<li><a class="reference internal" href="#example-4-batch-fitting">Example 4 : Batch fitting</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="installation.html"
+                          title="previous chapter">Installation</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="fitmodel.html"
+                          title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bayesfit.fitmodel</span></code> - Main function used to fit models</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/basic_usage.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -234,12 +228,13 @@
         <li class="right" >
           <a href="installation.html" title="Installation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.3 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Basic Usage Example</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, Michael Slugocki.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
+        &#169; Copyright 2024, Michael Slugocki.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
     </div>
   </body>
 </html>
