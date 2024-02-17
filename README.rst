@@ -5,7 +5,7 @@ Bayesian Psychometric Curve Fitting tool
     :alt: BayesFit Logo
     :scale: 50 %
 
-|pypi| |travis| |coverage|
+|pypi| |coverage|
 
 :Authors:
     Michael Slugocki
