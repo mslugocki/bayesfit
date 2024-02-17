@@ -3,7 +3,7 @@
 *
 *  BayesFit - CORE FILE
 *  
-*  Version:      Version 2.3
+*  Version:      Version 2.4
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   September, 2017

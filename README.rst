@@ -15,13 +15,11 @@ Bayesian Psychometric Curve Fitting tool
 
 **Special Note from Author:**
 
-[ updated on: 2024/01/10 ]
+[ updated on: 2024/02/17 ]
 
-Hello BayesFitters!
+BayesFit now has a brand new website (http://www.bayesfit.org).
 
-Excited to announce that I will be revamping Bayesfit in the coming weeks / months ahead 🥳  Also, to celebrate this event, I purchased the domain **bayesfit.org** to provide a stable resource for managing documentation, as well as providing more in-depth updates for those folks who are interested.
-
-Please stay tuned, and thank you for using BayesFit. Your feedback is always appreciated.
+Some outstanding issues have been addressed, and a new PYPI version of BayesFit (version 2.4) has been released.  Please update to the latest version to get all the benefits.
  
 Kind Regards,  
 🌳 M 🌳
@@ -34,9 +32,7 @@ Slugocki, M., Sekuler, A.B. and Bennett, P., 2019. BayesFit: A tool for modeling
 
 --------------------------------------------------
 
-🚧 under construction: currently moving API documentation to bayesfit.org 🚧
-
-**API documentation**: http://www.slugocm.ca/bayesfit/
+**API documentation**: http://www.bayesfit.org
 
 --------------------------------------------------
 
@@ -44,20 +40,13 @@ Slugocki, M., Sekuler, A.B. and Bennett, P., 2019. BayesFit: A tool for modeling
 
 --------------------------------------------------
 
-NEWS: 
-
-An article on BayesFit has now been published in the Journal of Open Research Software!  See: http://doi.org/10.5334/jors.202 
-
-
 Release Notes
 ------------------
 
-Release 2.3 (noteable mentions):
+Release 2.4:
 
-- **Now uses numerical integration to avoid convergence errors**
-- Removed PyMC3 dependency 
-- Mulitple new functions have been written for fitting, plotting, and extracting metrics
-- **Full API documentation now available** 
+- **New dedicated website for API documentation at: www.bayesfit.org**
+- Fixed issue with casting to float using numpy
 
 --------------------------------------------------
 
@@ -65,10 +54,9 @@ Release 2.3 (noteable mentions):
 
 Important links
 ---------------
-- Use documentation: http://www.slugocm.ca/bayesfit/
+- Use documentation: http://www.bayesfit.org
 - Source code repository: https://github.com/slugocm/bayesfit
 - Issue tracker: https://github.com/slugocm/bayesfit/issues
-- For latest update on new version releases, follow me on twitter: https://twitter.com/SlugocM
 
 
 Basic Installation [Linux/ Windows/ macOS]
@@ -115,13 +103,5 @@ Simply type:
     :target: https://badge.fury.io/py/bayesfit
     :alt: pypi version
     
-.. |travis| image:: https://travis-ci.org/SlugocM/bayesfit.svg?branch=master
-    :target: https://travis-ci.org/SlugocM/bayesfit/
-    :alt: travis-ci build status
-    
 .. |coverage| image:: https://coveralls.io/repos/github/SlugocM/bayesfit/badge.svg?branch=master
   :target: https://coveralls.io/github/SlugocM/bayesfit?branch=master
-
-
-
-
