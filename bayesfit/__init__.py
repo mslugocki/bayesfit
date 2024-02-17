@@ -3,11 +3,11 @@
 *
 *  BayesFit - INIT FILE
 *  
-*  Version:      Version 2.2
+*  Version:      Version 2.4
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   September 28, 2017
-*  Last updated: April 18, 2018
+*  Last updated: February 17, 2024
 *
 *******************************************************
 """
