@@ -54,26 +54,26 @@ def extract_priors(options):
                                                                       options['priors'][0]))
                     
                     alpha_prior_values = re.findall(r'[-+]?\d*\.\d+|\d+', options['priors'][0])
-                    options['priors_params']['scale'] = [np.float(x) for x in alpha_prior_values]
+                    options['priors_params']['scale'] = [float(x) for x in alpha_prior_values]
                 elif i == 1:
                     # Extract prior for beta parameter
                     options['priors_definitions']['slope'] = " ".join(re.findall("[a-zA-Z]+", 
                                                                      options['priors'][1]))
                     
                     beta_prior_values = re.findall(r'[-+]?\d*\.\d+|\d+', options['priors'][1])
-                    options['priors_params']['slope'] = [np.float(x) for x in beta_prior_values]    
+                    options['priors_params']['slope'] = [float(x) for x in beta_prior_values]    
                 elif i == 2:
                     # Extract prior for gamma parameter
                     options['priors_definitions']['gamma']  = " ".join(re.findall("[a-zA-Z]+", 
                                                                        options['priors'][2]))  
                     gamma_prior_values = re.findall(r'[-+]?\d*\.\d+|\d+', options['priors'][2])
-                    options['priors_params']['gamma'] = [np.float(x) for x in gamma_prior_values]
+                    options['priors_params']['gamma'] = [float(x) for x in gamma_prior_values]
                 elif i == 3:
                     # Extract prior for lambda parameter
                     options['priors_definitions']['lambda']  = " ".join(re.findall("[a-zA-Z]+", 
                                                                         options['priors'][3]))
             
                     lambda_prior_values = re.findall(r'[-+]?\d*\.\d+|\d+', options['priors'][3])
-                    options['priors_params']['lambda'] = [np.float(x) for x in lambda_prior_values]
+                    options['priors_params']['lambda'] = [float(x) for x in lambda_prior_values]
             
         return options
