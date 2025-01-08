@@ -1,25 +1,22 @@
-
 <!DOCTYPE html>
 
-<html lang="English">
+<html lang="English" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Basic Usage Example &#8212; BayesFit 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinxdoc.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
+    <title>Basic Usage Example &#8212; BayesFit 2.4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinxdoc.css?v=87629129" />
+    <script src="_static/documentation_options.js?v=7295bdb5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="bayesfit.fitmodel - Main function used to fit models" href="fitmodel.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -31,7 +28,7 @@
         <li class="right" >
           <a href="installation.html" title="Installation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.4.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Basic Usage Example</a></li> 
       </ul>
     </div>  
@@ -42,7 +39,7 @@
           <div class="body" role="main">
             
   <section id="basic-usage-example">
-<h1>Basic Usage Example<a class="headerlink" href="#basic-usage-example" title="Permalink to this heading">¶</a></h1>
+<h1>Basic Usage Example<a class="headerlink" href="#basic-usage-example" title="Link to this heading">¶</a></h1>
 <p>After <em>Bayesfit</em> is installed on your system, we are ready to get started fitting psychometric functions to data using the module. The first examples here will demonstrate the basic usage of Bayesfit</p>
 <p>We start by import the Bayesfit module into our workspace:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bayesfit</span> <span class="k">as</span> <span class="nn">bf</span>
@@ -64,7 +61,7 @@
 </tbody>
 </table>
 <section id="example-1-maximum-likelihood-estimation-mle">
-<h2>Example 1 : Maximum Likelihood Estimation (MLE)<a class="headerlink" href="#example-1-maximum-likelihood-estimation-mle" title="Permalink to this heading">¶</a></h2>
+<h2>Example 1 : Maximum Likelihood Estimation (MLE)<a class="headerlink" href="#example-1-maximum-likelihood-estimation-mle" title="Link to this heading">¶</a></h2>
 <p>The simplest procedure for fitting a model to data is to simply pass data to the <cite>fitmodel</cite> function. However, at a minimum, you will also likely want to include the argument specifying the N-alternatives possible during the experiment. For this example, let us assume a 2AFC task.</p>
 <p>Therefore, a minimal working example would be:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">M</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">ndarray</span><span class="p">]</span>
@@ -78,10 +75,11 @@
 </pre></div>
 </div>
 <p>which produces a plot that looks like this:</p>
-<a class="reference internal image-reference" href="_images/plot_psyfcn.png"><img alt="_images/plot_psyfcn.png" src="_images/plot_psyfcn.png" style="width: 375.0px; height: 375.0px;" /></a>
+<a class="reference internal image-reference" href="_images/plot_psyfcn.png"><img alt="_images/plot_psyfcn.png" src="_images/plot_psyfcn.png" style="width: 375.0px; height: 375.0px;" />
+</a>
 </section>
 <section id="example-2-mle-with-additional-options">
-<h2>Example 2 : MLE with additional options<a class="headerlink" href="#example-2-mle-with-additional-options" title="Permalink to this heading">¶</a></h2>
+<h2>Example 2 : MLE with additional options<a class="headerlink" href="#example-2-mle-with-additional-options" title="Link to this heading">¶</a></h2>
 <p>While the minimal working example is great, it leaves many options to be desired. One important consideration is determining which parameters should be estimated, and are considered free versus fixed, during the fitting procedure. We will also provide fixed values for gamma and lambda parameters in the model.</p>
 <p>Let us also specify which sigmoidal function to fit to the data, and decrease the density of the grid used to estimate parameters:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List of logical arguments which correspond to: scale, slope, gamma, lambda</span>
@@ -102,7 +100,7 @@
 </div>
 </section>
 <section id="example-3-bayesian-inference">
-<h2>Example 3 : Bayesian Inference<a class="headerlink" href="#example-3-bayesian-inference" title="Permalink to this heading">¶</a></h2>
+<h2>Example 3 : Bayesian Inference<a class="headerlink" href="#example-3-bayesian-inference" title="Link to this heading">¶</a></h2>
 <p>The previous examples used only maximum likelihood estimation as the main procedure to estimate parameters, as no priors were provided.  Therefore, to make the <cite>fitmodel</cite> function perform bayesian inference, we need to provide definitions for our priors for each of our parameters.</p>
 <p>The full documentation for the prior distributions, and the correct formatting to use can be found under the section for the <a class="reference internal" href="fitmodel.html"><span class="doc">fitmodel</span></a> function.  It is important to note that the list must contain four arguments, although NoneType can be used for parameters where a prior is unwanted.</p>
 <p>Here, we define prior distributions for the parameters that control the scale and slope of our cumulative normal function:</p>
@@ -123,20 +121,23 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/plot_posterior.png"><img alt="_images/plot_posterior.png" src="_images/plot_posterior.png" style="width: 450.0px; height: 300.0px;" /></a>
+<a class="reference internal image-reference" href="_images/plot_posterior.png"><img alt="_images/plot_posterior.png" src="_images/plot_posterior.png" style="width: 450.0px; height: 300.0px;" />
+</a>
 <p>The marginal distributions can als be viewed via:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">plot_marginals</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/plot_marginals.png"><img alt="_images/plot_marginals.png" src="_images/plot_marginals.png" style="width: 525.0px; height: 450.0px;" /></a>
+<a class="reference internal image-reference" href="_images/plot_marginals.png"><img alt="_images/plot_marginals.png" src="_images/plot_marginals.png" style="width: 525.0px; height: 450.0px;" />
+</a>
 <p>Last, we can view the priors that we used during our fitting procedure via:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bf</span><span class="o">.</span><span class="n">plot_priors</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">metrics</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/plot_priors.png"><img alt="_images/plot_priors.png" src="_images/plot_priors.png" style="width: 525.0px; height: 450.0px;" /></a>
+<a class="reference internal image-reference" href="_images/plot_priors.png"><img alt="_images/plot_priors.png" src="_images/plot_priors.png" style="width: 525.0px; height: 450.0px;" />
+</a>
 </section>
 <section id="example-4-batch-fitting">
-<h2>Example 4 : Batch fitting<a class="headerlink" href="#example-4-batch-fitting" title="Permalink to this heading">¶</a></h2>
+<h2>Example 4 : Batch fitting<a class="headerlink" href="#example-4-batch-fitting" title="Link to this heading">¶</a></h2>
 <p>The only major difference for batch fitting data compared with single datasets is the type of argument input into the <a class="reference internal" href="fitmodel.html"><span class="doc">fitmodel</span></a> function.  Instead of a M x 3 ndarray, each dataset will need to occupy its own key within a dictionary object as an ndarray.</p>
 <p>Therefore, if we had two datasets, we would need to construct a data object for batch fitting as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datasets in usual format</span>
@@ -170,7 +171,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
@@ -202,7 +203,7 @@
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -210,13 +211,13 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -228,13 +229,13 @@
         <li class="right" >
           <a href="installation.html" title="Installation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.4.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Basic Usage Example</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Michael Slugocki.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    &#169; Copyright 2025, Michael Slugocki.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     </div>
   </body>
 </html>
