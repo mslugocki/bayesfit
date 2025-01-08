@@ -1,25 +1,22 @@
-
 <!DOCTYPE html>
 
-<html lang="English">
+<html lang="English" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>bayesfit.plot_psyfcn - Plot psychometric function &#8212; BayesFit 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinxdoc.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
+    <title>bayesfit.plot_psyfcn - Plot psychometric function &#8212; BayesFit 2.4.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinxdoc.css?v=87629129" />
+    <script src="_static/documentation_options.js?v=7295bdb5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="bayesfit.plot_priors - Plot prior distributions" href="plot_priors.html" />
     <link rel="prev" title="bayesfit.fitmodel - Main function used to fit models" href="fitmodel.html" /> 
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -31,7 +28,7 @@
         <li class="right" >
           <a href="fitmodel.html" title="bayesfit.fitmodel - Main function used to fit models"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.4.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">bayesfit.plot_psyfcn</span></code> - Plot psychometric function</a></li> 
       </ul>
     </div>  
@@ -42,14 +39,14 @@
           <div class="body" role="main">
             
   <section id="bayesfit-plot-psyfcn-plot-psychometric-function">
-<h1><a class="reference internal" href="#bayesfit.plot_psyfcn" title="bayesfit.plot_psyfcn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bayesfit.plot_psyfcn</span></code></a> - Plot psychometric function<a class="headerlink" href="#bayesfit-plot-psyfcn-plot-psychometric-function" title="Permalink to this heading">¶</a></h1>
+<h1><a class="reference internal" href="#bayesfit.plot_psyfcn" title="bayesfit.plot_psyfcn"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bayesfit.plot_psyfcn</span></code></a> - Plot psychometric function<a class="headerlink" href="#bayesfit-plot-psyfcn-plot-psychometric-function" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="bayesfit.plot_psyfcn">
-<span class="sig-prename descclassname"><span class="pre">bayesfit.</span></span><span class="sig-name descname"><span class="pre">plot_psyfcn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_xscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_pnts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimate_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'MAP'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesfit.plot_psyfcn" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">bayesfit.</span></span><span class="sig-name descname"><span class="pre">plot_psyfcn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_xscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_pnts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimate_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'MAP'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesfit.plot_psyfcn" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <section id="input-arguments">
-<h2>Input Arguments<a class="headerlink" href="#input-arguments" title="Permalink to this heading">¶</a></h2>
+<h2>Input Arguments<a class="headerlink" href="#input-arguments" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><dl class="simple">
 <dt>data<span class="classifier">Numpy array</span></dt><dd><p>A m-row by 3-column Numpy array corresponding to data from the experiment.</p>
@@ -68,7 +65,7 @@
 </div></blockquote>
 </section>
 <section id="output-variables">
-<h2>Output Variables<a class="headerlink" href="#output-variables" title="Permalink to this heading">¶</a></h2>
+<h2>Output Variables<a class="headerlink" href="#output-variables" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><dl class="simple">
 <dt>matplotlib.pyplot Object</dt><dd><p>Plot of psychometric function using parameters from fitted model.</p>
@@ -83,12 +80,13 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bayesfit.plot_psyfcn</span></code> - Plot psychometric function</a><ul>
+<li><a class="reference internal" href="#bayesfit.plot_psyfcn"><code class="docutils literal notranslate"><span class="pre">bayesfit.plot_psyfcn()</span></code></a></li>
 <li><a class="reference internal" href="#input-arguments">Input Arguments</a></li>
 <li><a class="reference internal" href="#output-variables">Output Variables</a></li>
 </ul>
@@ -113,7 +111,7 @@
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -121,13 +119,13 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -139,13 +137,13 @@
         <li class="right" >
           <a href="fitmodel.html" title="bayesfit.fitmodel - Main function used to fit models"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">BayesFit 2.4.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">bayesfit.plot_psyfcn</span></code> - Plot psychometric function</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Michael Slugocki.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    &#169; Copyright 2025, Michael Slugocki.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     </div>
   </body>
 </html>

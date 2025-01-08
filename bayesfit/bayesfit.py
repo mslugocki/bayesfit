@@ -3,11 +3,11 @@
 *
 *  BayesFit - CORE FILE
 *  
-*  Version:      Version 2.4
+*  Version:      Version 2.4.1
 *  License:      Apache 2.0
 *  Written by:   Michael Slugocki
 *  Created on:   September, 2017
-*  Last updated: February 17, 2024
+*  Last updated: January 7, 2025
 *
 *******************************************************
 """
@@ -118,7 +118,7 @@ def fitmodel(data,
     if batch is True:
         # Raise warning to inform user that only select parameters will be 
         # saved.
-        warnings.warn('''\nWhen Batch mode is TRUE, Bayesfit outputs only select metrics to prevent memory issues that can arise from saving posterior and marginal distributions for a large nuber of datasets.''')
+        warnings.warn('''\nWhen Batch mode is TRUE, Bayesfit outputs only select metrics to prevent memory issues that can arise from saving posterior and marginal distributions for a large number of datasets.''')
         tmp_metrics = dict()
         metrics = dict()
         for keys in data_copy:

@@ -15,12 +15,16 @@ Bayesian Psychometric Curve Fitting tool
 
 **Special Note from Author:**
 
-[ updated on: 2024/02/17 ]
+[ updated on: 2025/01/07 ]
 
-BayesFit now has a brand new website (http://www.bayesfit.org).
+Given the ever changing landscape of software development, the recent jump from `Numpy 1.x` to `2.x` would require significant modifications to BayesFit to keep up-to-date with major changes that were implemented.
 
-Some outstanding issues have been addressed, and a new PYPI version of BayesFit (version 2.4) has been released.  Please update to the latest version to get all the benefits.
- 
+Unfortunately, provided this project is not funded, such ongoing development is simply not practical.  Therefore, modifications have been made to the requirements file to provide an upper limit to the Numpy version supported by BayesFit. 
+
+What this means is to continue to utilize BayesFit without issue, simply create a virtual environment with module versions specified under `requirements.txt` via `pip install -r requirements.txt`, and install BayesFit within that environment.
+
+This also means BayesFit will be frozen at this version number (v2.4.1). Thank you for your continued support, and I hope this software continues to help others in providing a simple Bayesian Curve Fitting Tool.
+
 Kind Regards,  
 🌳 M 🌳
 
@@ -43,10 +47,9 @@ Slugocki, M., Sekuler, A.B. and Bennett, P., 2019. BayesFit: A tool for modeling
 Release Notes
 ------------------
 
-Release 2.4:
+Release 2.4.1:
 
-- **New dedicated website for API documentation at: www.bayesfit.org**
-- Fixed issue with casting to float using numpy
+- **Updated requirements file with upper bound for Numpy (i.e., <= 1.24.4)**
 
 --------------------------------------------------
 

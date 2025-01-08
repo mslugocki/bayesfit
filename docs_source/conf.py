@@ -19,13 +19,13 @@ sys.path.insert(0, os.path.abspath('.//bayesfit'))
 # -- Project information -----------------------------------------------------
 
 project = 'BayesFit'
-copyright = '2024, Michael Slugocki'
+copyright = '2025, Michael Slugocki'
 author = 'Michael Slugocki'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '2.4'
+release = '2.4.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -42,7 +42,7 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
-    'sphinx.ext.githubpages',
+    'sphinx.ext.githubpages'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
